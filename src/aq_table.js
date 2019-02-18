@@ -9,6 +9,7 @@ class FilterableSiteTable extends Component {
         super(props);
         this.state = {
             filterText: '',
+            siteRegion: '',
             siteCategory: '',
             highFilter: '',
             townSearch: ''
@@ -16,24 +17,54 @@ class FilterableSiteTable extends Component {
     }
 
     handleFilterInput(val, field) {
+        let resetRegion = false;
+        this.resetRadioFilters();
         switch (field) {
             case ('category'):
                 this.setState({
                     siteCategory: val,
-                    highFilter: '',
                 }); break;
             case ('high_filter'):
                 this.setState({
                     highFilter: val,
-                    siteCategory: ''
                 }); break;
             case ('text_filter'):
+                resetRegion = true;
                 this.setState({
                     filterText: val,
                 }); break;
-            default: console.log('no condition met')
+            case ('region'):
+                this.setState({
+                    siteRegion: val
+                }); break;
+            default:
+                console.log('no condition met')
+        }
+        if (resetRegion) {
+            this.resetRegion()
         }
     }
+    resetTextInput() {
+        this.setState({filterText: '',})
+    }
+    resetRegion() {
+        this.setState({siteRegion: '',})
+    }
+    resetRadioFilters() {
+        this.setState({
+            siteCategory: '',
+            highFilter: ''
+        })
+    }
+    //
+    // componentDidUpdate(prevProps){
+    //     if (prevProps.geoCoordinates !== this.props.geoCoordinates) {
+    //         this.setState({
+    //             selected: this.props.selectedOption
+    //         });
+    //     }
+    // }
+
     render() {
         return (
             <div>
@@ -44,6 +75,7 @@ class FilterableSiteTable extends Component {
                     sites={this.props.sites.filter(site => site.pm10)}
                     filterText={this.state.filterText}
                     highFilter={this.state.highFilter}
+                    siteRegion={this.state.siteRegion}
                     siteCategory={this.state.siteCategory}
                 />
                 </Col>
@@ -52,6 +84,9 @@ class FilterableSiteTable extends Component {
                         filterText={this.state.filterText}
                         highFilter={this.state.highFilter}
                         siteCategory={this.state.siteCategory}
+                        siteRegion={this.state.siteRegion}
+                        resetRegion={this.resetRegion.bind(this)}
+                        resetText={this.resetTextInput.bind(this)}
                         onFilterChange={this.handleFilterInput.bind(this)}
                         handleGeoCoordinatesSearch={this.props.handleGeoCoordinatesSearch}
                     />

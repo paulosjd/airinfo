@@ -23,12 +23,12 @@ class RadioContainer extends React.Component {
     render() {
         const selectedKey = this.state.selected;
         return <>
-            <div><label for="radio-group">Filter by {this.props.filterName}</label></div>
+            <div><label htmlFor="radio-group">Filter by {this.props.filterName}</label></div>
             <div>{this.props.radios.map(({val, ...radioProps}) => (
                     <RadioButton
                         {...radioProps} selected={selectedKey === val}
                         onChange={evt => this.onChange(val, evt)}
-                        name='radio-group' />
+                        name='radio-group' key={val}/>
                 ))}</div>
         </>
     }

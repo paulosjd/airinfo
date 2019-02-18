@@ -7,19 +7,30 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
-.table {width: 500px}
-#pm10_header  {width: 200px}
-
-.town-search {
-  width: 260px
+.table {
+  width: 500px
+}
+#pm10_header {
+  width: 200px
+}
+.filter-element {
+  width: 177px;
+  margin-bottom: 10px;
 }
 .radio-group {
   position: relative;
   margin-bottom: 10px;
+}
+.town-matches {
+  margin-top: 10px;
+  padding-left: 0;
+  list-style: none;
+}
+.town-option:hover {
+  color: blue;
+  cursor: pointer;
 }

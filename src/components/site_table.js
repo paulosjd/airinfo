@@ -1,26 +1,21 @@
 import React, { Component } from "react";
 import {Table} from "react-bootstrap";
 
+const generateKey = (pre) => {
+    return `${ pre }_${ new Date().getTime() }`
+};
 
 const SiteCatRow = (props) => {
     return <tr><th colSpan="2">{props.category}</th></tr>;
 };
 
 const SiteRow = (props) => {
-    const site = props.site;
-    const name = site.exceedance ?
-        <span style={{color: 'red'}}>{site.name}</span> :
-        site.name;
     return (
         <tr>
-            <td>{name}</td>
-            <td>{site.pm10}</td>
+            <td>{props.site.name}</td>
+            <td>{props.site.pm10}</td>
         </tr>
     );
-};
-
-const generateKey = (pre) => {
-    return `${ pre }_${ new Date().getTime() }`
 };
 
 class SiteTable extends Component {
@@ -45,8 +40,8 @@ class SiteTable extends Component {
         const orderedSites = this.getHighest(this.props.highFilter);
         return this.props.sites.filter((site) => {
             return (site.name.toLowerCase().indexOf(filterText.toLowerCase()) > -1 &&
-                (!this.props.isExceedance || orderedSites.includes(site.id)) &&
                 (!this.props.highFilter || orderedSites.includes(site.id)) &&
+                (!this.props.siteRegion || site.region === this.props.siteRegion) &&
                 (!this.props.siteCategory || site.category === this.props.siteCategory))
         });
     }

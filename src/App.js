@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import FilterableSiteTable from './aq_table';
 
-
 class App extends Component {
     state = {
       sites: [],
@@ -9,12 +8,12 @@ class App extends Component {
       gps: ''
   };
 
-  handleGeoCoordinatesSearch(gps) {
+  handleGeoCoordinatesSearch(val) {
       console.log('parent handleGeo called');
-      console.log(gps);
+      console.log(val);
       console.log('afer')
       this.setState({
-        gps: gps
+          geoCoordinates: val
     })
   }
 
@@ -22,9 +21,8 @@ class App extends Component {
     const api = 'http://api.air-aware.com/';
     const default_query = 'sites/latest-pm10/';
     let location_url = '';
-    if ( this.state.gps ) {
-        location_url = 'sites/location-order/'.concat(
-            this.state.gps.latitude, '/', this.state.gps.longitude)
+    if ( this.state.geoCoordinates ) {
+        location_url = 'sites/location-order/'.concat(this.state.geoCoordinates)
         console.log(location_url);
     }
     fetch(api + (location_url || default_query))
@@ -41,6 +39,7 @@ class App extends Component {
         <FilterableSiteTable
             sites={this.state.sites}
             filterText={this.state.filterText}
+            geoCoordinates={this.state.geoCoordinates}
             handleGeoCoordinatesSearch={this.handleGeoCoordinatesSearch.bind(this)}
         />
       </div>

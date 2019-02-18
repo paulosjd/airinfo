@@ -1,8 +1,8 @@
 import React from "react";
 
-const RadioButton = ({key, selected, label, onChange}) => (
-    <label className="radio-inline radio-group" key={key} htmlFor={key}>
-        <input id={key} type="radio" checked={selected} value={key} onChange={onChange} />
+const RadioButton = ({val, selected, label, onChange}) => (
+    <label className="radio-inline radio-group" key={val} htmlFor={val}>
+        <input type="radio" checked={selected} value={val} onChange={onChange} />
         {label}
     </label>
 );

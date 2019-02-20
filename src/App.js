@@ -1,50 +1,61 @@
 import React, { Component } from 'react';
 import FilterableSiteTable from './aq_table';
 
+const initialState = {
+    sites: [],
+    time: '',
+    geoUrl: ''
+};
+
 class App extends Component {
-    state = {
-      sites: [],
-      time: '',
-      gps: ''
-  };
+    constructor(props) {
+        super(props);
+        this.state = initialState;
+    }
 
-  handleGeoCoordinatesSearch(val) {
-      console.log('parent handleGeo called');
-      console.log(val);
-      console.log('afer')
-      this.setState({
-          geoCoordinates: val
-    })
-  }
+    reset() {
+        this.setState(initialState);
+    }
+    handleGeoCoordinatesSearch(val) {
+        console.log('parent handleGeo called');
+        console.log(val);
+        console.log('afer');
+        this.reset();
+        this.fetchData(val)
+    }
 
-  componentDidMount() {
-    const api = 'http://api.air-aware.com/';
-    const default_query = 'sites/latest-pm10/';
-    let location_url = '';
-    if ( this.state.geoCoordinates ) {
-        location_url = 'sites/location-order/'.concat(this.state.geoCoordinates)
-        console.log(location_url);
+    componentDidMount() {
+        this.fetchData()
+    }
+
+    fetchData (coordinates){
+        const api = 'http://api.air-aware.com/';
+        const default_query = 'sites/latest-pm10/';
+        let location_url = '';
+        if ( coordinates ) {
+            location_url = 'sites/location-order/'.concat(coordinates);
+            console.log(location_url);
     }
     fetch(api + (location_url || default_query))
         .then(response => response.json())
-        .then(data => {this.setState({
-          sites: data.site_data,
-          time: data.time
+        .then(data => {console.log(data); this.setState({
+            sites: data.site_data.filter(x => x),
+            time: data.time
         })});
-  }
+    }
 
-  render() {
-      return (
-      <div className="App">
-        <FilterableSiteTable
-            sites={this.state.sites}
-            filterText={this.state.filterText}
-            geoCoordinates={this.state.geoCoordinates}
-            handleGeoCoordinatesSearch={this.handleGeoCoordinatesSearch.bind(this)}
-        />
-      </div>
-    );
-  }
+    render() {
+        console.log(this.state.sites)
+        return (
+        <div className="App">
+            <FilterableSiteTable
+                sites={this.state.sites}
+                filterText={this.state.filterText}
+                handleGeoCoordinatesSearch={this.handleGeoCoordinatesSearch.bind(this)}
+            />
+        </div>
+        )
+    }
 }
 
 export default App;

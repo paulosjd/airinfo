@@ -4,19 +4,22 @@ const TownSearch = (props) => {
 
     const handleInputChange = (e) => {
         props.resetRegion();
-        const lat = e.target.dataset.latitude;
-        const long = e.target.dataset.longitude;
-        props.onTownSearchChange(lat.concat('_', long));
+        props.onTownSearchChange(e.target.value);
     };
 
     const handleNameClick = (e) => {
-        console.log('handle name click ' + e.target.value);
-        props.handleGeoCoordinatesSearch(e.target.value)
+        props.resetTownInput()
+        const lat = e.target.dataset.latitude;
+        const long = e.target.dataset.longitude;
+        if (lat && long) {
+            props.handleGeoCoordinatesSearch(
+                lat.replace('.','_').concat('/', long.replace('.','_')))
+        }
     };
 
     const handleInputBlur = (e) => {
-        if (e.relatedTarget.className !== 'town-option') {
-            props.resetTownInput(e.target.value);
+        if (!e.relatedTarget || e.relatedTarget.className !== 'town-option') {
+            props.resetTownInput();
         }
     };
 
@@ -39,7 +42,6 @@ const TownSearch = (props) => {
                         onClick={handleNameClick.bind(this)}
                         data-latitude={town.latitude.toString()}
                         data-longitude={town.longitude.toString()}
-                        value={town.latitude.toString().concat('_', town.longitude)}
                         >{town.name}
                     </li>
                 );

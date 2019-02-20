@@ -66,6 +66,7 @@ class FilterableSiteTable extends Component {
     // }
 
     render() {
+        for (let a of this.props.sites){console.log(a.name + ' ' + a.pm10)}
         return (
             <div>
                 <Grid>

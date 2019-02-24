@@ -4,7 +4,7 @@ import FilterableSiteTable from './aq_table';
 const initialState = {
     sites: [],
     time: '',
-    geoUrl: ''
+    geoUrl: '',
 };
 
 class App extends Component {
@@ -17,9 +17,6 @@ class App extends Component {
         this.setState(initialState);
     }
     handleGeoCoordinatesSearch(val) {
-        console.log('parent handleGeo called');
-        console.log(val);
-        console.log('afer');
         this.reset();
         this.fetchData(val)
     }
@@ -36,20 +33,20 @@ class App extends Component {
             location_url = 'sites/location-order/'.concat(coordinates);
             console.log(location_url);
     }
-    fetch(api + (location_url || default_query))
-        .then(response => response.json())
-        .then(data => {console.log(data); this.setState({
-            sites: data.site_data.filter(x => x),
-            time: data.time
-        })});
+        fetch(api + (location_url || default_query))
+            .then(response => response.json())
+            .then(data => {console.log(data.time); this.setState({
+                sites: data.site_data.filter(x => x),
+                time: data.time
+            })});
     }
 
     render() {
-        console.log(this.state.sites)
         return (
         <div className="App">
             <FilterableSiteTable
                 sites={this.state.sites}
+                time={this.state.time}
                 filterText={this.state.filterText}
                 handleGeoCoordinatesSearch={this.handleGeoCoordinatesSearch.bind(this)}
             />

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 import SearchBar from './components/search_bar'
 import SiteTable from './components/site_table'
-
+import AirChart from './components/air_chart'
 
 class FilterableSiteTable extends Component {
     constructor(props) {
@@ -12,7 +12,8 @@ class FilterableSiteTable extends Component {
             siteRegion: '',
             siteCategory: '',
             highFilter: '',
-            townSearch: ''
+            townSearch: '',
+            siteCode: 'MY1'
         };
     }
 
@@ -56,14 +57,6 @@ class FilterableSiteTable extends Component {
             highFilter: ''
         })
     }
-    //
-    // componentDidUpdate(prevProps){
-    //     if (prevProps.geoCoordinates !== this.props.geoCoordinates) {
-    //         this.setState({
-    //             selected: this.props.selectedOption
-    //         });
-    //     }
-    // }
 
     render() {
         for (let a of this.props.sites){console.log(a.name + ' ' + a.pm10)}
@@ -71,16 +64,17 @@ class FilterableSiteTable extends Component {
             <div>
                 <Grid>
                 <Row>
-                <Col md={4}>
+                <Col md={3}>
                 <SiteTable
                     sites={this.props.sites.filter(site => site.pm10)}
+                    time={this.props.time}
                     filterText={this.state.filterText}
                     highFilter={this.state.highFilter}
                     siteRegion={this.state.siteRegion}
                     siteCategory={this.state.siteCategory}
                 />
                 </Col>
-                <Col md={8}>
+                <Col md={2}>
                     <SearchBar
                         filterText={this.state.filterText}
                         highFilter={this.state.highFilter}
@@ -91,6 +85,9 @@ class FilterableSiteTable extends Component {
                         onFilterChange={this.handleFilterInput.bind(this)}
                         handleGeoCoordinatesSearch={this.props.handleGeoCoordinatesSearch}
                     />
+                </Col>
+                <Col md={7}>
+                    <AirChart siteCode={this.state.siteCode}/>
                 </Col>
                 </Row>
                 </Grid>

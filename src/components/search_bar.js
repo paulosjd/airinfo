@@ -82,12 +82,12 @@ class SearchBar extends React.Component {
 }
 
 const categories = [
-    {val: '', label: 'All'}, {val: 'urban', label: 'Urban'}, {val: 'roadside', label: 'Roadside'},
-    {val: 'industrial', label: 'Industrial'}, {val: 'rural', label: 'Rural'}
+    {val: '', label: 'All'}, {val: 'urban', label: 'Urban'},  {val: 'roadside', label: 'Traffic'},
+    {val: 'rural', label: 'Rural'}, {val: 'industrial', label: 'Industrial'}
 ];
 
 const pm10_levels = [
-    {val: '', label: 'All'}, {val: 'high', label: 'High PM10'},  {val: 'low', label: 'Low PM10'},
+    {val: '', label: 'All'}, {val: 'high', label: 'High'},  {val: 'low', label: 'Low'},
 ];
 
 const regions = [

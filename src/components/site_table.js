@@ -1,22 +1,6 @@
 import React, { Component } from "react";
 import {Table} from "react-bootstrap";
-
-const generateKey = (pre) => {
-    return `${ pre }_${ new Date().getTime() }`
-};
-
-const SiteCatRow = (props) => {
-    return <tr><th colSpan="2">{props.category}</th></tr>;
-};
-
-const SiteRow = (props) => {
-    return (
-        <tr>
-            <td>{props.site.name}</td>
-            <td>{props.site.pm10}</td>
-        </tr>
-    );
-};
+import { SiteCatRow, SiteRow } from "./site_row"
 
 class SiteTable extends Component {
 
@@ -66,12 +50,17 @@ class SiteTable extends Component {
         return (
             <Table striped bordered condensed hover>
                 <thead>
-                <tr><th>Site Name</th><th id="pm10_header">PM10 (ug/m3)</th></tr>
+                <tr><th className='time_label'><strong>Measured at:</strong><br/>
+                    {this.props.time}</th><th id="pm10_header">PM10 (ug/m3)</th></tr>
                 </thead>
                 <tbody>{rows}</tbody>
             </Table>
         );
     }
 }
+
+const generateKey = (pre) => {
+    return `${ pre }_${ new Date().getTime() }`
+};
 
 export default SiteTable;

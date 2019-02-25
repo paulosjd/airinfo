@@ -4,15 +4,20 @@ import SearchBar from './components/search_bar'
 import SiteTable from './components/site_table'
 import AirChart from './components/air_chart'
 
+
+const defaultFilters = {
+    filterText: '',
+    siteRegion: '',
+    siteCategory: '',
+    highFilter: '',
+    townSearch: ''
+};
+
 class FilterableSiteTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            filterText: '',
-            siteRegion: '',
-            siteCategory: '',
-            highFilter: '',
-            townSearch: '',
+            ...defaultFilters,
             siteCode: 'CLL2',
             siteName: 'London Bloomsbury'
         };
@@ -45,9 +50,6 @@ class FilterableSiteTable extends Component {
                 }); break;
             default:
                 console.log('no condition met')
-        }
-        if (resetRegion) {
-            this.resetRegion()
         }
     }
     resetTextInput() {

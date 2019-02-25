@@ -84,6 +84,7 @@ class AirChart extends React.Component {
             </VictoryChart>
             {dateChartData.map(obj =>
                 <VictoryChart
+                    key={obj.text}
                     width={140}
                     height={140}
                     domain={{ y: [minVal * 0.76, maxVal * 1.6] }}

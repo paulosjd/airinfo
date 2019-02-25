@@ -35,7 +35,7 @@ class App extends Component {
     }
         fetch(api + (location_url || default_query))
             .then(response => response.json())
-            .then(data => {console.log(data.time); this.setState({
+            .then(data => {this.setState({
                 sites: data.site_data.filter(x => x),
                 time: data.time
             })});

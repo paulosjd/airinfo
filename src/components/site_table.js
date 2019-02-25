@@ -43,8 +43,13 @@ class SiteTable extends Component {
         const rows = [];
         for (let cat of categories) {
             rows.push(<SiteCatRow category={cat} key={generateKey(cat)}/>);
-            for (let site of categorizedSites.get(cat)) {
-                rows.push(<SiteRow site={site} key={site.id}/>);
+            let sites = categorizedSites.get(cat);
+            if ( this.props.highFilter ||  this.props.lowFilter) {
+                sites.sort((a, b) => a.pm10 - b.pm10);
+                if (this.props.highFilter !== 'low') sites.reverse();
+            }
+            for (let site of sites) {
+                rows.push(<SiteRow onSiteClick={this.props.onSiteClick} site={site} key={site.id}/>);
             }
         }
         return (

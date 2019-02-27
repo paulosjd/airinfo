@@ -10,7 +10,7 @@ const defaultFilters = {
     siteRegion: '',
     siteCategory: '',
     highFilter: '',
-    townSearch: ''
+    townSearch: '',
 };
 
 class FilterableSiteTable extends Component {
@@ -19,7 +19,8 @@ class FilterableSiteTable extends Component {
         this.state = {
             ...defaultFilters,
             siteCode: 'CLL2',
-            siteName: 'London Bloomsbury'
+            siteName: 'London Bloomsbury',
+            showCalendar: false
         };
     }
 
@@ -28,8 +29,7 @@ class FilterableSiteTable extends Component {
     }
 
     handleFilterInput(val, field) {
-        let resetRegion = false;
-        this.resetRadioFilters();
+        this.resetFilterState();
         switch (field) {
             case ('category'):
                 this.setState({
@@ -40,7 +40,6 @@ class FilterableSiteTable extends Component {
                     highFilter: val,
                 }); break;
             case ('text_filter'):
-                resetRegion = true;
                 this.setState({
                     filterText: val,
                 }); break;
@@ -52,20 +51,26 @@ class FilterableSiteTable extends Component {
                 console.log('no condition met')
         }
     }
-    resetTextInput() {
-        this.setState({filterText: '',})
+
+    resetFilterState() {
+        this.setState({...defaultFilters})
     }
+
     resetRegion() {
         this.setState({siteRegion: '',})
     }
-    resetRadioFilters() {
-        this.setState({
-            siteCategory: '',
-            highFilter: ''
-        })
-    }
 
     render() {
+        const siteCode = this.state.siteCode;
+        const siteName = this.state.siteName;
+        let detail;
+        if (this.state.showCalendar) {
+            detail = null
+        } else {
+            detail = <AirChart
+                siteCode={siteCode}
+                siteName={siteName.split(" ").splice(0,2).join(" ")} />
+    }
         return (
             <div>
                 <Grid>
@@ -77,7 +82,7 @@ class FilterableSiteTable extends Component {
                             siteCategory={this.state.siteCategory}
                             siteRegion={this.state.siteRegion}
                             resetRegion={this.resetRegion.bind(this)}
-                            resetText={this.resetTextInput.bind(this)}
+                            resetText={this.resetFilterState.bind(this)}
                             onFilterChange={this.handleFilterInput.bind(this)}
                             handleGeoCoordinatesSearch={this.props.handleGeoCoordinatesSearch}
                         />
@@ -93,12 +98,8 @@ class FilterableSiteTable extends Component {
                     onSiteClick={this.handleSiteClick.bind(this)}
                 />
                 </Col>
-
                 <Col md={7}>
-                    <AirChart
-                        siteCode={this.state.siteCode}
-                        siteName={this.state.siteName.split(" ").splice(0,2).join(" ")}
-                    />
+                    {detail}
                 </Col>
                 </Row>
                 </Grid>

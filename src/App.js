@@ -13,11 +13,8 @@ class App extends Component {
         this.state = initialState;
     }
 
-    reset() {
-        this.setState(initialState);
-    }
     handleGeoCoordinatesSearch(val) {
-        this.reset();
+        this.setState(initialState);
         this.fetchData(val)
     }
 

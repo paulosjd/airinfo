@@ -58,7 +58,11 @@ class SiteTable extends Component {
                 <tr><th className='time_label'><strong>Measured at:</strong><br/>
                     {this.props.time}</th><th id="pm10_header">PM10 (ug/m3)</th></tr>
                 </thead>
-                <tbody>{rows}</tbody>
+                <tbody>
+                {rows.length > 0 ? rows :
+                    !this.props.filterText ? <tr><td className='loading_text'>Loading...</td></tr> :
+                        <tr><td>No results found</td></tr>}
+                </tbody>
             </Table>
         );
     }

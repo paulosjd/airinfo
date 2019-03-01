@@ -26,9 +26,11 @@ class AirChart extends React.Component {
 
     render() {
         const dateFromDateTime = (datetime) => {
-            let splitDate = datetime.split(' ').splice(0)[0].split('-');
-            let splitTime = datetime.split(' ').splice(-1)[0].split(':');
-            return new Date(...splitDate.concat(splitTime).map(x => parseInt(x)));
+            let dtData = datetime.split(/[\s-:]/).map(x => parseInt(x));
+            dtData[1]--;
+            let date = new Date(...dtData.splice(0,3));
+            date.setHours(...dtData);
+            return date;
         };
         let chartDataTime = this.state.chartData.map(hourlyData => ({
             x: hourlyData.time.split(' ').splice(-1)[0],

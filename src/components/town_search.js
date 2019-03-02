@@ -24,7 +24,7 @@ const TownSearch = (props) => {
     };
 
     return <>
-        <div><label htmlFor="town-search">Order by closest proximity</label></div>
+        <div><label htmlFor="town-search">Order by proximity</label></div>
         <div><input
             placeholder="Enter a UK town"
             name="town-search"

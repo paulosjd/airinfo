@@ -44,11 +44,8 @@ class SearchBar extends React.Component {
 
     render() {
         return (<>
-            <TextSearchInput
-                onFilterTextChange={this.props.onFilterChange}
-                filterText={this.props.filterText}
-                resetTextInput={this.resetInput.bind(this, 'text')}
-            />
+            <button onClick={this.props.onCalendarButtonClick.bind(this)} className='calendar-button'>
+                {!this.props.showCalendar ? 'Show calendar heatmap' : 'Show recent charts'}</button>
             <RadioContainer
                 radios={pm10_levels}
                 selectedOption={this.props.highFilter}
@@ -62,6 +59,11 @@ class SearchBar extends React.Component {
                 filterCriteria={'category'}
                 onCatFilterChange={this.props.onFilterChange}
                 filterName={'site category'}
+            />
+            <TextSearchInput
+                onFilterTextChange={this.props.onFilterChange}
+                filterText={this.props.filterText}
+                resetTextInput={this.resetInput.bind(this, 'text')}
             />
             <RegionSelect
                 regions={regions}
@@ -93,11 +95,11 @@ const pm10_levels = [
 const regions = [
     {val: 'central-scotland', label: 'Central Scotland'}, {val: 'eastern', label: 'East Anglia'},
     {val: 'east-midlands', label: 'East Midlands'}, {val: 'greater-london', label: 'Greater London'},
-    {val: 'north-east', label: 'North East'}, {val: 'north-east-scotland', label: 'North East Scotland'},
-    {val: 'north-west', label: 'North West'}, {val: 'northern-ireland', label: 'Northern Ireland'},
-    {val: 'highlands', label: 'Scottish Highlands'}, {val: 'south-east', label: 'South East'},
-    {val: 'south-wales', label: 'South Wales'}, {val: 'south-west', label: 'South West'},
-    {val: 'west-midlands', label: 'West Midlands'}, {val: 'yorkshire', label: 'Yorkshire'}
+    {val: 'north-east', label: 'North East'}, {val: 'north-west', label: 'North West'},
+    {val: 'northern-ireland', label: 'Northern Ireland'}, {val: 'highlands', label: 'Scottish Highlands'},
+    {val: 'south-east', label: 'South East'}, {val: 'south-wales', label: 'South Wales'},
+    {val: 'south-west', label: 'South West'}, {val: 'west-midlands', label: 'West Midlands'},
+    {val: 'yorkshire', label: 'Yorkshire'}
 ];
 
 export default SearchBar;

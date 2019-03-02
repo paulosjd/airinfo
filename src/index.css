@@ -30,19 +30,19 @@ code {
 }
 .filter-element {
   width: 177px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 .radio-group {
   position: relative;
   margin-bottom: 10px;
 }
 .town-matches {
-  margin-top: 10px;
-  padding-left: 0;
+  padding-left: 9px;
   list-style: none;
 }
 .town-option:hover {
   cursor: pointer;
+  color: #007dc1;
   font-weight: bold;
 }
 .link:hover span{
@@ -50,4 +50,74 @@ code {
 }
 .loading_text {
   color: #0074D9
+}
+label {
+  font-family:Arial;
+}
+input[type=text], select {
+  border: 5px solid white;
+  -webkit-box-shadow:
+          inset 0 0 8px  rgba(0,0,0,0.1),
+          0 0 16px rgba(0,0,0,0.1);
+  -moz-box-shadow:
+          inset 0 0 8px  rgba(0,0,0,0.1),
+          0 0 16px rgba(0,0,0,0.1);
+  box-shadow:
+          inset 0 0 8px  rgba(0,0,0,0.1),
+          0 0 16px rgba(0,0,0,0.1);
+  padding: 5px;
+  background: rgba(255,255,255,0.5);
+  margin: 0 0 14px 0;
+  width: 177px;
+}
+.calendar-button {
+  -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+  -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+  box-shadow:inset 0px 1px 0px 0px #ffffff;
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #f6f6f6));
+  background:-moz-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+  background:-webkit-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+  background:-o-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+  background:-ms-linear-gradient(top, #ffffff 5%, #f6f6f6 100%);
+  background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f6f6f6',GradientType=0);
+  background-color:#ffffff;
+  -moz-border-radius:6px;
+  -webkit-border-radius:6px;
+  border-radius:6px;
+  border:1px solid #dcdcdc;
+  display:inline-block;
+  cursor:pointer;
+  color:#007dc1;
+  font-family:Arial;
+  font-size:12px;
+  font-weight:bold;
+  padding:4px 16px;
+  text-decoration:none;
+  text-shadow:0px 1px 0px #ffffff;
+  text-align: center;
+  width: 177px;
+  margin-bottom: 16px;
+}
+.calendar-button:hover {
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f6f6f6), color-stop(1, #ffffff));
+  background:-moz-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+  background:-webkit-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+  background:-o-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+  background:-ms-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
+  background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff',GradientType=0);
+  background-color:#f6f6f6;
+}
+.react-calendar-heatmap .color-scale-1 {
+  fill: #d6e685;
+}
+.react-calendar-heatmap .color-scale-2 {
+  fill: #8cc665;
+}
+.react-calendar-heatmap .color-scale-3 {
+  fill: #44a340;
+}
+.react-calendar-heatmap .color-scale-4 {
+  fill: #1e6823;
 }

@@ -3,6 +3,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import SearchBar from './components/search_bar'
 import SiteTable from './components/site_table'
 import AirChart from './components/air_chart'
+import AirCalendar from './components/air_calendar'
 
 
 const defaultFilters = {
@@ -25,7 +26,11 @@ class FilterableSiteTable extends Component {
     }
 
     handleSiteClick(siteCode, siteName) {
-        this.setState({...this.state, siteCode, siteName})
+        this.setState({...this.state, siteCode, siteName, showCalendar: false})
+    }
+
+    handleCalendarButtonClick() {
+        this.setState({showCalendar: !this.state.showCalendar})
     }
 
     handleFilterInput(val, field) {
@@ -65,8 +70,10 @@ class FilterableSiteTable extends Component {
         const siteName = this.state.siteName;
         let detail;
         if (this.state.showCalendar) {
-            detail = null
-        } else {
+            detail = <AirCalendar
+
+            />}
+         else {
             detail = <AirChart
                 siteCode={siteCode}
                 siteName={siteName.split(" ").splice(0,2).join(" ")} />
@@ -75,18 +82,20 @@ class FilterableSiteTable extends Component {
             <div>
                 <Grid>
                 <Row>
-                    <Col md={2}>
-                        <SearchBar
-                            filterText={this.state.filterText}
-                            highFilter={this.state.highFilter}
-                            siteCategory={this.state.siteCategory}
-                            siteRegion={this.state.siteRegion}
-                            resetRegion={this.resetRegion.bind(this)}
-                            resetText={this.resetFilterState.bind(this)}
-                            onFilterChange={this.handleFilterInput.bind(this)}
-                            handleGeoCoordinatesSearch={this.props.handleGeoCoordinatesSearch}
-                        />
-                    </Col>
+                <Col md={2}>
+                <SearchBar
+                    filterText={this.state.filterText}
+                    highFilter={this.state.highFilter}
+                    siteCategory={this.state.siteCategory}
+                    siteRegion={this.state.siteRegion}
+                    showCalendar={this.state.showCalendar}
+                    resetRegion={this.resetRegion.bind(this)}
+                    resetText={this.resetFilterState.bind(this)}
+                    onCalendarButtonClick={this.handleCalendarButtonClick.bind(this)}
+                    onFilterChange={this.handleFilterInput.bind(this)}
+                    handleGeoCoordinatesSearch={this.props.handleGeoCoordinatesSearch}
+                />
+                </Col>
                 <Col md={3}>
                 <SiteTable
                     sites={this.props.sites.filter(site => site.pm10)}

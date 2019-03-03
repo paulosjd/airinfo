@@ -3,7 +3,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import SearchBar from './components/search_bar'
 import SiteTable from './components/site_table'
 import AirChart from './components/air_chart'
-import AirCalendar from './components/air_calendar'
+import AirCalendars from './components/air_calendars'
 
 
 const defaultFilters = {
@@ -70,14 +70,12 @@ class FilterableSiteTable extends Component {
         const siteName = this.state.siteName;
         let detail;
         if (this.state.showCalendar) {
-            detail = <AirCalendar
-
-            />}
-         else {
+            detail = <AirCalendars />}
+        else {
             detail = <AirChart
                 siteCode={siteCode}
                 siteName={siteName.split(" ").splice(0,2).join(" ")} />
-    }
+        }
         return (
             <div>
                 <Grid>

@@ -70,7 +70,7 @@ input[type=text], select {
   margin: 0 0 14px 0;
   width: 177px;
 }
-.calendar-button {
+.calendar-button, .calendar-option {
   -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
   -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
   box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -99,7 +99,12 @@ input[type=text], select {
   width: 177px;
   margin-bottom: 16px;
 }
-.calendar-button:hover {
+
+.calendar-option {
+  color:gold !important;
+}
+
+.calendar-button:hover, .calendar-option:hover {
   background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f6f6f6), color-stop(1, #ffffff));
   background:-moz-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
   background:-webkit-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
@@ -114,3 +119,6 @@ input[type=text], select {
 .react-calendar-heatmap .color-scale-2 { fill: #8cc665; }
 .react-calendar-heatmap .color-scale-3 { fill: #44a340; }
 .react-calendar-heatmap .color-scale-4 { fill: #1e6823; }
+.react-calendar-heatmap .color-scale-5 { fill: #1e6823; }
+.react-calendar-heatmap .color-scale-6 { fill: #1e6823; }
+.react-calendar-heatmap .color-scale-7 { fill: #1e6823; }

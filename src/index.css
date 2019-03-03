@@ -100,8 +100,13 @@ input[type=text], select {
   margin-bottom: 16px;
 }
 
-.calendar-option {
+.calendar-buttons {
+  margin-left: 45px;
+}
+
+.calendar-option{
   color:gold !important;
+  width: 77px;
 }
 
 .calendar-button:hover, .calendar-option:hover {
@@ -114,7 +119,7 @@ input[type=text], select {
   filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff',GradientType=0);
   background-color:#f6f6f6;
 }
-.heatmap_label { margin-left: 34px}
+.heatmap_label { margin-left: 45px}
 .react-calendar-heatmap .color-scale-1 { fill: #d6e685; }
 .react-calendar-heatmap .color-scale-2 { fill: #8cc665; }
 .react-calendar-heatmap .color-scale-3 { fill: #44a340; }

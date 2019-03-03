@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="5ab2f950-7ad8-454f-ae9c-2c792b896a69" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/components/air_calendars.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/air_calendars.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/heatmap_calendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/heatmap_calendar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -44,8 +43,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/air_calendars.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="60" column="69" selection-start-line="60" selection-start-column="69" selection-end-line="60" selection-end-column="69" />
+            <state relative-caret-position="276">
+              <caret line="64" column="34" selection-start-line="64" selection-start-column="34" selection-end-line="64" selection-end-column="34" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -80,8 +79,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/index.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="123" column="38" selection-start-line="123" selection-start-column="38" selection-end-line="123" selection-end-column="38" />
+            <state relative-caret-position="262">
+              <caret line="108" column="9" lean-forward="true" selection-start-line="108" selection-start-column="9" selection-end-line="108" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -97,7 +96,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>mouseov</find>
       <find>Roadsid</find>
       <find>Traff</find>
       <find>Traffic</find>
@@ -127,6 +125,7 @@
       <find>date_vals_2</find>
       <find>.map</find>
       <find>(props)</find>
+      <find>label</find>
     </findStrings>
     <replaceStrings>
       <replace>exceed</replace>
@@ -187,8 +186,8 @@
         <option value="$PROJECT_DIR$/src/components/air_calendar.js" />
         <option value="$PROJECT_DIR$/src/components/calendars_container.js" />
         <option value="$PROJECT_DIR$/src/aq_table.js" />
-        <option value="$PROJECT_DIR$/src/index.css" />
         <option value="$PROJECT_DIR$/src/components/heatmap_calendar.js" />
+        <option value="$PROJECT_DIR$/src/index.css" />
         <option value="$PROJECT_DIR$/src/components/air_calendars.js" />
       </list>
     </option>
@@ -277,7 +276,7 @@
       <workItem from="1551139475010" duration="10000" />
       <workItem from="1551140167132" duration="7000" />
       <workItem from="1551214410615" duration="23302000" />
-      <workItem from="1551555425937" duration="22295000" />
+      <workItem from="1551555425937" duration="24092000" />
     </task>
     <task id="LOCAL-00001" summary="various minor changes">
       <created>1551129176895</created>
@@ -290,7 +289,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="288187000" />
+    <option name="totallyTimeSpent" value="289984000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1293" height="693" extended-state="6" />
@@ -497,23 +496,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="123" column="38" selection-start-line="123" selection-start-column="38" selection-end-line="123" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/air_chart.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="107" column="53" selection-start-line="107" selection-start-column="49" selection-end-line="107" selection-end-column="53" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/aq_table.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -534,6 +516,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/air_chart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="107" column="53" selection-start-line="107" selection-start-column="49" selection-end-line="107" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="108" column="9" lean-forward="true" selection-start-line="108" selection-start-column="9" selection-end-line="108" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/heatmap_calendar.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -546,8 +545,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/air_calendars.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="60" column="69" selection-start-line="60" selection-start-column="69" selection-end-line="60" selection-end-column="69" />
+        <state relative-caret-position="276">
+          <caret line="64" column="34" selection-start-line="64" selection-start-column="34" selection-end-line="64" selection-end-column="34" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>

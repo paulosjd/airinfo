@@ -1,15 +1,14 @@
 import React from "react";
-import CalendarHeatmap from 'react-calendar-heatmap';
 import HeatmapCalendar from './heatmap_calendar'
 
 import 'react-calendar-heatmap/dist/styles.css';
 
-const today = new Date();
-
 class AirCalendars extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {calendarData: []}
+        this.state = {
+            calendarData: [],
+            pollutant: 'pm10'}
     };
 
     componentDidMount(){
@@ -17,15 +16,10 @@ class AirCalendars extends React.Component {
     }
 
     getCalendarData() {
-        let data = null;
-        const url = 'http://api.air-aware.com/stats/highest-sites/'.concat('pm10/','500');
+        const url = 'http://api.air-aware.com/stats/highest-sites/'.concat(this.state.pollutant,'/500');
         fetch(url)
             .then(response => response.json())
             .then(aqData => {this.setState({calendarData: aqData})});
-        fetch(url)
-            .then(response => response.json())
-            .then(aqData => data = aqData)
-            .then()
     }
 
     componentDidUpdate(prevProps){
@@ -56,33 +50,20 @@ class AirCalendars extends React.Component {
                     }
                 }
                 if (date_vals[1].length > 0){
-                rows2.push(<><tr key={i + 'cal-key'}>
-                    <td><HeatmapCalendar dateCounts={date_vals[0]} />
-                    <td><HeatmapCalendar dateCounts={date_vals[1]} />
-                        </td>
-                        <td>
-                            <CalendarHeatmap
-                                numDays={120}
-                                endDate={today}
-                                values={date_vals[1]}
-                                classForValue={(value) => {
-                                    if (!value) {
-                                        return 'color-empty';
-                                    }
-                                    return `color-scale-${value.count}`;
-                                }}
-                                showWeekdayLabels={true}
-                            />
-                        </td>
-                        </tr></>)
+                rows2.push(
+                    <><tr key={i + 'cal-key'}>
+                    <td><HeatmapCalendar dateCounts={date_vals[0]} /></td>
+                    <td><HeatmapCalendar dateCounts={date_vals[1]} /></td>
+                    </tr></>)
             }}
         });
         if ( this.state.calendarData.length > 0 ) {return (
             <>
-            <div className="btn-group">
-                <button className='calendar-option'>Test button 1</button>
-                <button className='calendar-option'>Test button 1</button>
-                <button className='calendar-option'>Test button 1</button>
+            <div id='data_options' className="btn-group calendar-buttons">
+                <button value='pm10' className='calendar-option'>PM10</button>
+                <button value='pm25' className='calendar-option'>PM25</button>
+                <button value='no2' className='calendar-option'>NO<sub>2</sub></button>
+                <button value='ozone' className='calendar-option'>Ozone</button>
             </div>
             <table>
                 <tbody>{rows2}</tbody>

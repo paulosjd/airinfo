@@ -30,11 +30,11 @@ class AirCalendars extends React.Component {
 
     render() {
         const data = this.state.calendarData;
-        const rows2 = [];
+        const rows = [];
         data.forEach((value, i) => {
             if ( i % 2 === 0 ) {
                 if (data[i + 1]) {
-                    rows2.push(
+                    rows.push(
                         <tr key={i}>
                             <td><h5 className='heatmap_label'>{value.name}</h5></td>
                             <td><h5 className='heatmap_label'>{data[i + 1] ? data[i + 1].name : ''}</h5></td>
@@ -50,11 +50,12 @@ class AirCalendars extends React.Component {
                     }
                 }
                 if (date_vals[1].length > 0){
-                rows2.push(
-                    <><tr key={i + 'cal-key'}>
-                    <td><HeatmapCalendar dateCounts={date_vals[0]} /></td>
-                    <td><HeatmapCalendar dateCounts={date_vals[1]} /></td>
-                    </tr></>)
+                rows.push(
+                    <React.Fragment key={i + 'key1'}>
+                        <tr><td><HeatmapCalendar dateCounts={date_vals[0]} /></td>
+                            <td><HeatmapCalendar dateCounts={date_vals[1]} /></td></tr>
+                    </React.Fragment>
+                )
             }}
         });
         if ( this.state.calendarData.length > 0 ) {return (
@@ -66,7 +67,7 @@ class AirCalendars extends React.Component {
                 <button value='ozone' className='calendar-option'>Ozone</button>
             </div>
             <table>
-                <tbody>{rows2}</tbody>
+                <tbody>{rows}</tbody>
             </table>
             </>
         )} return (<p className='loading_text'>Loading...</p>)

@@ -1,17 +1,21 @@
 import React from "react";
 import HeatmapCalendar from './heatmap_calendar'
+import CalendarButtons from './calendar_buttons'
 
 import 'react-calendar-heatmap/dist/styles.css';
+
+const pollutants = ['no2', 'pm10', 'pm25', 'ozone'];
 
 class AirCalendars extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            calendarData: [],
-            pollutant: 'pm10'}
+        this.state = { pollutant: 'pm10'};
+        pollutants.forEach(val => this.setState(
+            this.state[val + 'Data'] = [])
+        )
     };
 
-    componentDidMount(){
+    componentDidMount() {
         this.getCalendarData()
     }
 
@@ -19,17 +23,19 @@ class AirCalendars extends React.Component {
         const url = 'http://api.air-aware.com/stats/highest-sites/'.concat(this.state.pollutant,'/500');
         fetch(url)
             .then(response => response.json())
-            .then(aqData => {this.setState({calendarData: aqData})});
+            .then(aqData => {this.setState({
+                [this.state.pollutant + 'Data']: aqData
+            })})
+            .then(aqD)
     }
 
-    componentDidUpdate(prevProps){
-        if (prevProps.siteCode !== this.props.siteCode) {
-            this.getChartData();
-        }
+    handleButtonClick(e) {
+        this.setState({pollutant: e.target.value});
+        this.getCalendarData();
     }
 
     render() {
-        const data = this.state.calendarData;
+        const data = this.state[this.state.pollutant + 'Data'];
         const rows = [];
         data.forEach((value, i) => {
             if ( i % 2 === 0 ) {
@@ -52,20 +58,18 @@ class AirCalendars extends React.Component {
                 if (date_vals[1].length > 0){
                 rows.push(
                     <React.Fragment key={i + 'key1'}>
-                        <tr><td><HeatmapCalendar dateCounts={date_vals[0]} /></td>
-                            <td><HeatmapCalendar dateCounts={date_vals[1]} /></td></tr>
+                        <tr>
+                            <td><HeatmapCalendar dateCounts={date_vals[0]} /></td>
+                            <td><HeatmapCalendar dateCounts={date_vals[1]} /></td>
+                        </tr>
                     </React.Fragment>
                 )
             }}
         });
-        if ( this.state.calendarData.length > 0 ) {return (
+        if ( this.state[this.state.pollutant + 'Data'].length > 0 ) {return (
             <>
-            <div id='data_options' className="btn-group calendar-buttons">
-                <button value='pm10' className='calendar-option'>PM10</button>
-                <button value='pm25' className='calendar-option'>PM25</button>
-                <button value='no2' className='calendar-option'>NO<sub>2</sub></button>
-                <button value='ozone' className='calendar-option'>Ozone</button>
-            </div>
+                <h4>{this.state.pollutant}</h4>
+            <CalendarButtons handleClick={this.handleButtonClick.bind(this)} />
             <table>
                 <tbody>{rows}</tbody>
             </table>

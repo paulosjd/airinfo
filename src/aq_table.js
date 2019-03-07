@@ -5,6 +5,7 @@ import SiteTable from './components/site_table'
 import AirChart from './components/air_chart'
 import AirCalendars from './components/air_calendars'
 
+const pollutants = ['no2', 'pm10', 'pm25', 'ozone'];
 
 const defaultFilters = {
     filterText: '',
@@ -21,8 +22,31 @@ class FilterableSiteTable extends Component {
             ...defaultFilters,
             siteCode: 'CLL2',
             siteName: 'London Bloomsbury',
-            showCalendar: false
+            showCalendar: false,
+            pollutant: 'no2'
         };
+    }
+
+    componentDidMount() {
+        this.getCalendarData()
+    }
+
+    getCalendarData() {
+        const getUrl = (pol) => 'http://api.air-aware.com/stats/highest-sites/'.concat(pol,'/500');
+        let url = getUrl(this.state.pollutant);
+        fetch(url)
+            .then(response => response.json())
+            .then(aqData => {
+                this.setState({[this.state.pollutant + 'Data']: aqData});
+            });
+        pollutants.filter(val => val !== this.state.pollutant).forEach(value => {
+            url = getUrl(value);
+            fetch(url)
+                .then(response => response.json())
+                .then(aqData => {
+                    this.setState({[value + 'Data']: aqData});
+                });
+        })
     }
 
     handleSiteClick(siteCode, siteName) {
@@ -65,12 +89,25 @@ class FilterableSiteTable extends Component {
         this.setState({siteRegion: '',})
     }
 
+    handleButtonClick(e) {
+        this.setState({pollutant: e.target.value});
+    }
+
+
     render() {
         const siteCode = this.state.siteCode;
         const siteName = this.state.siteName;
         let detail;
         if (this.state.showCalendar) {
-            detail = <AirCalendars />}
+            detail = <AirCalendars
+                pm10Data={this.state.pm10Data}
+                no2Data={this.state.no2Data}
+                pm25Data={this.state.pm25Data}
+                ozoneData={this.state.ozoneData}
+                pollutant={this.state.pollutant}
+                handleButtonClick={this.handleButtonClick.bind(this)}
+
+            />}
         else {
             detail = <AirChart
                 siteCode={siteCode}

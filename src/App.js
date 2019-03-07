@@ -28,7 +28,6 @@ class App extends Component {
         let location_url = '';
         if ( coordinates ) {
             location_url = 'sites/location-order/'.concat(coordinates);
-            console.log(location_url);
     }
         fetch(api + (location_url || default_query))
             .then(response => response.json())

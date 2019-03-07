@@ -16,7 +16,7 @@ const SiteRow = (props) => {
 
     return (
         <tr>
-            <td><a href='#' className="link" onClick={handleClick}
+            <td><a href={'/' + props.site.site_code} className="link" onClick={handleClick}
                    data-sitecode={props.site.site_code}
                    data-sitename={props.site.name}
                 >

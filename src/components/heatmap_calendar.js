@@ -12,6 +12,7 @@ const shiftDate = (date, numDays) => {
 export default (props) => {
     return (
         <CalendarHeatmap
+            key={props.key}
             startDate={shiftDate(today, -120)}
             endDate={today}
             values={props.dateCounts}

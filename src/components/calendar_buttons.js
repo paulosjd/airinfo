@@ -7,10 +7,14 @@ export default (props) => {
             <button
                 key={val}
                 value={val.toLowerCase()}
-                className='calendar-option'
+                className={props.activeTab === val.toLowerCase() ? 'calendar-option-active' : 'calendar-option'}
                 onClick={props.handleClick}
             >{val}</button>
         )}
-        <button value='no2' onClick={props.handleClick} className='calendar-option'>NO<sub>2</sub></button>
+        <button
+            value='no2'
+            onClick={props.handleClick}
+            className={props.activeTab === 'no2' ? 'calendar-option-active' : 'calendar-option'}
+        >NO<sub>2</sub></button>
     </div> )
 };

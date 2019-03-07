@@ -9,34 +9,17 @@ const pollutants = ['no2', 'pm10', 'pm25', 'ozone'];
 class AirCalendars extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { pollutant: 'pm10'};
-        pollutants.forEach(val => this.setState(
-            this.state[val + 'Data'] = [])
-        )
     };
 
-    componentDidMount() {
-        this.getCalendarData()
-    }
 
-    getCalendarData() {
-        const url = 'http://api.air-aware.com/stats/highest-sites/'.concat(this.state.pollutant,'/500');
-        fetch(url)
-            .then(response => response.json())
-            .then(aqData => {this.setState({
-                [this.state.pollutant + 'Data']: aqData
-            })})
-            .then(aqD)
-    }
-
-    handleButtonClick(e) {
-        this.setState({pollutant: e.target.value});
-        this.getCalendarData();
-    }
 
     render() {
-        const data = this.state[this.state.pollutant + 'Data'];
+        let data = this.props[this.props.pollutant + 'Data'];
         const rows = [];
+        if ( !data ) {
+            return (<p className='loading_text'>Loading...</p>)
+        }
+        data = data.filter(value => {return Object.keys(value.date_counts).length  > 1});
         data.forEach((value, i) => {
             if ( i % 2 === 0 ) {
                 if (data[i + 1]) {
@@ -66,10 +49,12 @@ class AirCalendars extends React.Component {
                 )
             }}
         });
-        if ( this.state[this.state.pollutant + 'Data'].length > 0 ) {return (
+        if ( this.props[this.props.pollutant + 'Data'].length > 0 ) {return (
             <>
-                <h4>{this.state.pollutant}</h4>
-            <CalendarButtons handleClick={this.handleButtonClick.bind(this)} />
+            <CalendarButtons
+                handleClick={this.props.handleButtonClick}
+                activeTab={this.props.pollutant}
+            />
             <table>
                 <tbody>{rows}</tbody>
             </table>

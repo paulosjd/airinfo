@@ -106,7 +106,6 @@ class FilterableSiteTable extends Component {
                 ozoneData={this.state.ozoneData}
                 pollutant={this.state.pollutant}
                 handleButtonClick={this.handleButtonClick.bind(this)}
-
             />}
         else {
             detail = <AirChart

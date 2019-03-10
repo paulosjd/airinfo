@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
-import SearchBar from './components/search_bar'
-import SiteTable from './components/site_table'
-import AirChart from './components/air_chart'
-import AirCalendars from './components/air_calendars'
+import SearchBar from './search_bar'
+import SiteTable from './site_table'
+import AirChart from './air_chart'
+import AirCalendars from './air_calendars'
 
 const pollutants = ['no2', 'pm10', 'pm25', 'ozone'];
 
@@ -15,7 +15,7 @@ const defaultFilters = {
     townSearch: '',
 };
 
-class FilterableSiteTable extends Component {
+class MainContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -151,4 +151,4 @@ class FilterableSiteTable extends Component {
     }
 }
 
-export default FilterableSiteTable;
+export default MainContainer;

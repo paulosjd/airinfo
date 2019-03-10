@@ -23,6 +23,23 @@ const TownSearch = (props) => {
         }
     };
 
+    const townMatches = () => {
+        if (props.townOptions.length > 0) {
+            return props.townOptions.map(town => {
+                return (<li key={town.latitude}
+                            className='town-option'
+                            tabIndex="0"
+                            onClick={handleNameClick.bind(this)}
+                            data-latitude={town.latitude.toString()}
+                            data-longitude={town.longitude.toString()}
+                        > {town.name}
+                        </li>)
+            })
+        } else if (props.townInput.length > 2 && props.isLoading === false) {
+            return <li className='no_match'>No matches found</li>
+        }
+    };
+
     return <>
         <div><label htmlFor="town-search">Order by proximity</label></div>
         <div><input
@@ -34,18 +51,7 @@ const TownSearch = (props) => {
             onBlur={handleInputBlur.bind(this)}/>
         </div>
         <ul className='town-matches'>
-            {props.townOptions.map(town => {
-                return (
-                    <li key={town.latitude}
-                        className='town-option'
-                        tabIndex="0"
-                        onClick={handleNameClick.bind(this)}
-                        data-latitude={town.latitude.toString()}
-                        data-longitude={town.longitude.toString()}
-                        >{town.name}
-                    </li>
-                );
-            })}
+            {townMatches()}
         </ul>
         </>
 };

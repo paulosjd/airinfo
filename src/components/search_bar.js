@@ -9,7 +9,8 @@ class SearchBar extends React.Component {
         super(props);
         this.state = {
             townInput: '',
-            townOptions: []
+            townOptions: [],
+            isLoading: false
         };
     }
 
@@ -17,14 +18,15 @@ class SearchBar extends React.Component {
         this.setState({townInput})
         const textInput = townInput.replace(/\W/g, '');
         if ( textInput.length > 2 ) {
-            const geoUrl = 'http://api.air-aware.com/sites/town-geo'
+            this.setState({isLoading: true})
+            const geoUrl = 'http://api.air-aware.com/sites/town-geo';
             fetch(geoUrl)
                 .then(response => response.json())
                 .then(data => {
-                    let townsOptions = data.filter((dat) => {
+                    let townOptions = data.filter((dat) => {
                         return dat.name.toLowerCase().startsWith(textInput.toLowerCase());
                     });
-                    this.setState({townOptions: townsOptions});
+                    this.setState({townOptions, isLoading: false});
                 });
         } else this.setState({townOptions: []})
     };
@@ -71,6 +73,7 @@ class SearchBar extends React.Component {
             <TownSearch
                 townInput={this.state.townInput}
                 townOptions={this.state.townOptions}
+                isLoading={this.state.isLoading}
                 onTownSearchChange={this.handleTownInput.bind(this)}
                 resetTownInput={this.resetInput.bind(this, 'town')}
                 resetRegion={this.props.resetRegion}

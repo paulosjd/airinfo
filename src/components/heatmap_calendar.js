@@ -29,7 +29,7 @@ export default (props) => {
             tooltipDataAttrs={val => valueToString(val)}
             showWeekdayLabels={true}
         />
-            <ReactTooltip place="top" type="light" effect="float"/>
+        <ReactTooltip place="top" type="light" effect="float"/>
         </>
     )
 }

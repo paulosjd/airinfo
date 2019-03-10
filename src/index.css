@@ -51,6 +51,9 @@ code {
 .loading_text {
   color: #0074D9
 }
+.no_match {
+  color: slategrey;
+}
 label {
   font-family:Arial;
 }

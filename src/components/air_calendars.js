@@ -4,14 +4,7 @@ import CalendarButtons from './calendar_buttons'
 
 import 'react-calendar-heatmap/dist/styles.css';
 
-const pollutants = ['no2', 'pm10', 'pm25', 'ozone'];
-
 class AirCalendars extends React.Component {
-    constructor(props) {
-        super(props);
-    };
-
-
 
     render() {
         let data = this.props[this.props.pollutant + 'Data'];

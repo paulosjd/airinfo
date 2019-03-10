@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import FilterableSiteTable from './aq_table';
+import MainContainer from './components/main_container';
 
 const initialState = {
     sites: [],
@@ -40,7 +40,7 @@ class App extends Component {
     render() {
         return (
         <div className="App">
-            <FilterableSiteTable
+            <MainContainer
                 sites={this.state.sites}
                 time={this.state.time}
                 filterText={this.state.filterText}

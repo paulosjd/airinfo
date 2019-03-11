@@ -2,6 +2,7 @@ import React from "react";
 
 export default (props) => {
     return (
+    <>
     <div id='data_options' className="btn-group calendar-buttons">
         {['PM10', 'PM25', 'Ozone'].map(val =>
             <button
@@ -16,5 +17,8 @@ export default (props) => {
             onClick={props.handleClick}
             className={props.activeTab === 'no2' ? 'calendar-option-active' : 'calendar-option'}
         >NO<sub>2</sub></button>
-    </div> )
+        <label className='heatmap_info'>Highest 500 hourly measurements</label>
+    </div>
+    </>
+    )
 };

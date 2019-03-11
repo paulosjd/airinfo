@@ -1,6 +1,6 @@
 import React from "react";
-import HeatmapCalendar from './heatmap_calendar'
-import CalendarButtons from './calendar_buttons'
+import HeatmapCalendar from '../components/heatmap_calendar'
+import CalendarButtons from '../components/calendar_buttons'
 
 import 'react-calendar-heatmap/dist/styles.css';
 

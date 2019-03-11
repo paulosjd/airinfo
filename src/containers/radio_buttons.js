@@ -1,5 +1,5 @@
 import React from "react";
-import RadioButton from './radio_button'
+import RadioButton from '../components/radio_button'
 
 class RadioContainer extends React.Component {
     constructor(props) {

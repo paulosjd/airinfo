@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {Table} from "react-bootstrap";
-import { SiteCatRow, SiteRow } from "./site_row"
+import { SiteCatRow, SiteRow } from "../components/site_row"
 
 class SiteTable extends Component {
 

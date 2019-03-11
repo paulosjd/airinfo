@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 import SearchBar from './search_bar'
 import SiteTable from './site_table'
-import AirChart from './air_chart'
-import AirCalendars from './air_calendars'
+import AirChart from './charts'
+import AirCalendars from './heatmaps'
 
 const pollutants = ['no2', 'pm10', 'pm25', 'ozone'];
 
@@ -23,7 +23,8 @@ class MainContainer extends Component {
             siteCode: 'CLL2',
             siteName: 'London Bloomsbury',
             showCalendar: false,
-            pollutant: 'no2'
+            pollutant: 'no2',
+            number: 500
         };
     }
 
@@ -32,7 +33,7 @@ class MainContainer extends Component {
     }
 
     getCalendarData() {
-        const getUrl = (pol) => 'http://api.air-aware.com/stats/highest-sites/'.concat(pol,'/500');
+        const getUrl = (pol) => 'http://api.air-aware.com/stats/highest-sites/'.concat(pol,'/100');
         let url = getUrl(this.state.pollutant);
         fetch(url)
             .then(response => response.json())
@@ -51,6 +52,10 @@ class MainContainer extends Component {
 
     handleSiteClick(siteCode, siteName) {
         this.setState({...this.state, siteCode, siteName, showCalendar: false})
+    }
+
+    handleNumberChoice(number) {
+        this.setState({...this.state, number})
     }
 
     handleCalendarButtonClick() {
@@ -110,7 +115,9 @@ class MainContainer extends Component {
         else {
             detail = <AirChart
                 siteCode={siteCode}
-                siteName={siteName.split(" ").splice(0,2).join(" ")} />
+                siteName={siteName.split(" ").splice(0,2).join(" ")}
+                
+            />
         }
         return (
             <div>

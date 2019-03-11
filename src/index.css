@@ -54,6 +54,16 @@ code {
 .no_match {
   color: slategrey;
 }
+.heatmap_label{
+  font-family:Arial;
+  color: darkslategray;
+}
+.heatmap_info {
+  color: peru;
+  padding-left: 40px;
+  font-family:Arial;
+  font-weight: normal;
+}
 label {
   font-family:Arial;
 }

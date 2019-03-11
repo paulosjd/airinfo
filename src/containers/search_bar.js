@@ -1,8 +1,8 @@
 import React from "react";
-import TextSearchInput from './text_search';
-import RadioContainer from './radio_container';
-import TownSearch from './town_search'
-import RegionSelect from './region_select'
+import TextSearchInput from '../components/text_search';
+import RadioContainer from './radio_buttons';
+import TownSearch from '../components/town_search'
+import RegionSelect from '../components/region_select'
 
 class SearchBar extends React.Component {
     constructor(props) {

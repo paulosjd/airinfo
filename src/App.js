@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MainContainer from './components/main_container';
+import MainContainer from './containers/main';
 
 const initialState = {
     sites: [],

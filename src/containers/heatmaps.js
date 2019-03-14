@@ -47,6 +47,8 @@ class AirCalendars extends React.Component {
             <CalendarButtons
                 handleClick={this.props.handleButtonClick}
                 activeTab={this.props.pollutant}
+                handleNumberChoice={this.props.handleNumberChoice}
+                number={this.props.number}
             />
             <table>
                 <tbody>{rows}</tbody>

@@ -56,7 +56,7 @@ class SiteTable extends Component {
             <Table striped bordered condensed hover>
                 <thead>
                 <tr><th className='time_label'><strong>Measured at:</strong><br/>
-                    {this.props.time}</th><th id="pm10_header">PM10 (ug/m3)</th></tr>
+                    {this.props.time}</th><th id="pm10_header">PM10 (μg/m3)</th></tr>
                 </thead>
                 <tbody>
                 {rows.length > 0 ? rows :

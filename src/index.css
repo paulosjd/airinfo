@@ -59,10 +59,13 @@ code {
   color: darkslategray;
 }
 .heatmap_info {
+  float: right;
   color: peru;
-  padding-left: 40px;
   font-family:Arial;
   font-weight: normal;
+  display: inline-block;
+  text-align: right;
+  clear:left;
 }
 label {
   font-family:Arial;
@@ -82,6 +85,17 @@ input[type=text], select {
   background: rgba(255,255,255,0.5);
   margin: 0 0 14px 0;
   width: 177px;
+}
+.number_select {
+  border-radius: 7px 7px 7px 7px;
+  -moz-border-radius: 7px 7px 7px 7px;
+  -webkit-border-radius: 7px 7px 7px 7px;
+  float: right;
+  margin-left: 50px;
+  border: 0px solid #000000;
+  width: 48px !important;
+  display: inline-block !important;
+  -webkit-appearance: none !important;
 }
 .calendar-button, .calendar-option, .calendar-option-active {
   -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -112,22 +126,18 @@ input[type=text], select {
   width: 177px;
   margin-bottom: 16px;
 }
-
 .calendar-buttons {
   margin-left: 45px;
 }
-
 .calendar-option{
   color:gold !important;
   width: 77px;
-
 }
 .calendar-option-active{
   color:gold !important;
   width: 77px;
   border:1px solid slategrey;
 }
-
 .calendar-button:hover, .calendar-option:hover {
   background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f6f6f6), color-stop(1, #ffffff));
   background:-moz-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
@@ -138,7 +148,16 @@ input[type=text], select {
   filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff',GradientType=0);
   background-color:#f6f6f6;
 }
-.heatmap_label { margin-left: 45px}
+.heatmap_label {
+  margin-left: 45px
+}
+rect[class^='color-scale-'] {
+  cursor: pointer;
+  pointer-events: auto !important;
+}
+.extra {
+  pointer-events: auto !important;
+}
 .react-calendar-heatmap .color-scale-1 { fill: #ffe690; }
 .react-calendar-heatmap .color-scale-2 { fill: #ffe690; }
 .react-calendar-heatmap .color-scale-3 { fill: #ffcb65; }

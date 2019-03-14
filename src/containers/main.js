@@ -111,6 +111,8 @@ class MainContainer extends Component {
                 ozoneData={this.state.ozoneData}
                 pollutant={this.state.pollutant}
                 handleButtonClick={this.handleButtonClick.bind(this)}
+                handleNumberChoice={this.handleNumberChoice.bind(this)}
+                number={this.state.number}
             />}
         else {
             detail = <AirChart

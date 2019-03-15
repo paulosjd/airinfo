@@ -23,39 +23,35 @@ class MainContainer extends Component {
             siteCode: 'CLL2',
             siteName: 'London Bloomsbury',
             showCalendar: false,
-            pollutant: 'no2',
-            number: 500
+            numChoices: [100, 500, 1000]
         };
     }
 
     componentDidMount() {
-        this.getCalendarData()
+        this.state.numChoices.forEach(num => this.getCalendarData(num))
     }
 
-    getCalendarData() {
-        const getUrl = (pol) => 'http://api.air-aware.com/stats/highest-sites/'.concat(pol,'/100');
-        let url = getUrl(this.state.pollutant);
+    getCalendarData(number) {
+        const getUrl = (pol) => 'http://api.air-aware.com/stats/highest-sites/'.concat(pol, '/', number);
+        let url = getUrl('no2');
+        console.log(url)
         fetch(url)
             .then(response => response.json())
             .then(aqData => {
-                this.setState({[this.state.pollutant + 'Data']: aqData});
+                this.setState({['no2' + number]: aqData});
             });
-        pollutants.filter(val => val !== this.state.pollutant).forEach(value => {
+        pollutants.filter(val => val !== 'no2').forEach(value => {
             url = getUrl(value);
             fetch(url)
                 .then(response => response.json())
                 .then(aqData => {
-                    this.setState({[value + 'Data']: aqData});
+                    this.setState({[value + number]: aqData});
                 });
         })
     }
 
     handleSiteClick(siteCode, siteName) {
         this.setState({...this.state, siteCode, siteName, showCalendar: false})
-    }
-
-    handleNumberChoice(number) {
-        this.setState({...this.state, number})
     }
 
     handleCalendarButtonClick() {
@@ -94,31 +90,28 @@ class MainContainer extends Component {
         this.setState({siteRegion: '',})
     }
 
-    handleButtonClick(e) {
-        this.setState({pollutant: e.target.value});
-    }
-
-
     render() {
+        const getDataObject = (str) => {
+            let obj = {};
+            this.state.numChoices.forEach(num => obj[str + num] = this.state[str + num]);
+            return obj
+        };
         const siteCode = this.state.siteCode;
         const siteName = this.state.siteName;
         let detail;
         if (this.state.showCalendar) {
             detail = <AirCalendars
-                pm10Data={this.state.pm10Data}
-                no2Data={this.state.no2Data}
-                pm25Data={this.state.pm25Data}
-                ozoneData={this.state.ozoneData}
+                pm10Data={getDataObject('pm10')}
+                pm25Data={getDataObject('pm25')}
+                no2Data={getDataObject('no2')}
+                ozoneData={getDataObject('ozone')}
                 pollutant={this.state.pollutant}
-                handleButtonClick={this.handleButtonClick.bind(this)}
-                handleNumberChoice={this.handleNumberChoice.bind(this)}
-                number={this.state.number}
+                numChoices={this.state.numChoices}
             />}
         else {
             detail = <AirChart
                 siteCode={siteCode}
                 siteName={siteName.split(" ").splice(0,2).join(" ")}
-                
             />
         }
         return (

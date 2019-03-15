@@ -24,6 +24,7 @@ export default (props) => {
             id='num_select'
             number={props.number}
             handleNumberChoice={props.handleNumberChoice}
+            numChoices={props.numChoices}
         />
     </div>
     </>

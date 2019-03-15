@@ -5,14 +5,54 @@ import CalendarButtons from '../components/calendar_buttons'
 import 'react-calendar-heatmap/dist/styles.css';
 
 class AirCalendars extends React.Component {
+    state = {
+        tooltipMax: false,
+        max: null,
+        number: 500,
+        pollutant: 'no2',
+        pm10Data: {},
+        pm25Data: {},
+        no2Data: {},
+        ozoneData: {}
+
+    };
+
+    componentDidMount() {
+        this.setState({
+                ...this.state,
+                pm10Data: this.props.pm10Data,
+                pm25Data: this.props.pm25Data,
+                no2Data: this.props.no2Data,
+                ozoneData: this.props.ozoneData
+        })
+    }
+
+    handleButtonClick(e) {
+        this.setState({pollutant: e.target.value});
+    }
+
+    handleNumberChoice(number) {
+        this.setState({...this.state, number})
+    }
+
+    handleHeatmapClick(e) {
+        console.log('click handler called')
+        console.log(e)
+        this.setState({...this.state, tooltipOption: !this.state.tooltipMax, max: e.max})
+    }
 
     render() {
-        let data = this.props[this.props.pollutant + 'Data'];
-        const rows = [];
+        console.log(this.state);
+        let data = this.state[this.state.pollutant + 'Data'][this.state.pollutant + this.state.number];
+        console.log(this.state.pollutant + 'Data')
+        console.log(this.state[this.state.pollutant + 'Data'])
+        console.log(data)
         if ( !data ) {
             return (<p className='loading_text'>Loading...</p>)
         }
-        data = data.filter(value => {return Object.keys(value.date_counts).length  > 1});
+        const rows = [];
+        data = data.filter(value => {
+            return Object.keys(value.date_counts).length > (this.state.number > 500 ? 3 : 2)});
         data.forEach((value, i) => {
             if ( i % 2 === 0 ) {
                 if (data[i + 1]) {
@@ -24,31 +64,38 @@ class AirCalendars extends React.Component {
                 }
                 const date_vals = [[], []];
                 for (let [key, val] of Object.entries(value.date_counts)) {
-                        date_vals[0].push({date: new Date(key), count: val})
+                        date_vals[0].push({date: new Date(key), count: val.count, max: val.max})
                 }
                 if ( data[i + 1]) {
                     for (let [key, val] of Object.entries(data[i + 1].date_counts)) {
-                            date_vals[1].push({date: new Date(key), count: val})
+                            date_vals[1].push({date: new Date(key), count: val.count, max: val.max})
                     }
                 }
                 if (date_vals[1].length > 0){
+                    console.log('push')
                 rows.push(
                     <React.Fragment key={i + 'key1'}>
-                        <tr>
-                            <td><HeatmapCalendar dateCounts={date_vals[0]} /></td>
-                            <td><HeatmapCalendar dateCounts={date_vals[1]} /></td>
+                        <tr>{[0, 1].map(n => {
+                            return <td key={n}>
+                                <HeatmapCalendar
+                                    dateCounts={date_vals[n]}
+                                    handleHeatmapClick={this.handleHeatmapClick.bind(this)}
+                                    tooltipMax={this.state.tooltipMax}
+                                /></td>
+                        })}
                         </tr>
                     </React.Fragment>
                 )
             }}
         });
-        if ( this.props[this.props.pollutant + 'Data'].length > 0 ) {return (
+        if ( this.state[this.state.pollutant + 'Data'][this.state.pollutant + this.state.number].length > 0 ) {return (
             <>
             <CalendarButtons
-                handleClick={this.props.handleButtonClick}
+                handleClick={this.handleButtonClick.bind(this)}
                 activeTab={this.props.pollutant}
-                handleNumberChoice={this.props.handleNumberChoice}
-                number={this.props.number}
+                number={this.state.number}
+                handleNumberChoice={this.handleNumberChoice.bind(this)}
+                numChoices={this.props.numChoices}
             />
             <table>
                 <tbody>{rows}</tbody>

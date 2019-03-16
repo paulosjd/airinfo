@@ -25,20 +25,18 @@ class MainContainer extends Component {
             showCalendar: false,
             numChoices: [100, 500, 1000],
             calendarDataLoaded: false,
-            chartDataLoaded: false,
             chartData: [],
         };
     }
 
     componentDidMount() {
-        this.getChartData()
+        this.getChartData();
         this.state.numChoices.forEach(num => this.getCalendarData(num))
     }
 
     getCalendarData(number) {
         const getUrl = (pol) => 'http://api.air-aware.com/stats/highest-sites/'.concat(pol, '/', number);
         let url = getUrl('no2');
-        console.log(url)
         fetch(url)
             .then(response => response.json())
             .then(aqData => {
@@ -63,14 +61,13 @@ class MainContainer extends Component {
 
     getChartData() {
         const url = 'http://api.air-aware.com/data/'.concat(this.state.siteCode, '/168')
-        console.log(url)
         fetch(url)
             .then(response => response.json())
-            .then(aqData => {this.setState({...this.state, chartData: aqData, chartDataLoaded: true})});
+            .then(aqData => {this.setState({...this.state, chartData: aqData})});
     }
 
     handleSiteClick(siteCode, siteName) {
-        this.setState({...this.state, siteCode, siteName, showCalendar: false})
+        this.setState({...this.state, siteCode, siteName, showCalendar: false}, this.getChartData)
     }
 
     handleCalendarButtonClick() {
@@ -112,7 +109,6 @@ class MainContainer extends Component {
     }
 
     render() {
-        console.log(this.state.chartData)
         const getDataObject = (str) => {
             let obj = {};
             this.state.numChoices.forEach(num => obj[str + num] = this.state[str + num]);

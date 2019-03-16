@@ -2,19 +2,8 @@ import React from "react";
 import { VictoryLine, VictoryChart, VictoryAxis, VictoryLabel } from 'victory';
 
 class AirChart extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {chartData: this.props.chartData}
-    };
-
-    componentDidUpdate(prevProps){
-        if (prevProps.siteCode !== this.props.siteCode) {
-            this.getChartData();
-        }
-    }
 
     render() {
-        console.log(this.props.chartData)
         const dateFromDateTime = (datetime) => {
             let dtData = datetime.split(/[\s-:]/).map(x => parseInt(x));
             dtData[1]--;

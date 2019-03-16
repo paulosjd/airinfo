@@ -19,8 +19,15 @@ class App extends Component {
     }
 
     componentDidMount() {
+        console.log('table fetch called')
         this.fetchData()
     }
+    //
+    // componentDidUpdate(prevProps, prevState){
+    //     if (prevState.siteCode !== this.state.siteCode) {
+    //         this.getChartData();
+    //     }
+    // }
 
     fetchData (coordinates){
         const api = 'http://api.air-aware.com/';
@@ -34,7 +41,7 @@ class App extends Component {
             .then(data => {this.setState({
                 sites: data.site_data.filter(x => x),
                 time: data.time
-            })});
+            }, () => console.log('state set'))});
     }
 
     render() {

@@ -67,7 +67,9 @@ class MainContainer extends Component {
     }
 
     handleSiteClick(siteCode, siteName) {
-        this.setState({...this.state, siteCode, siteName, showCalendar: false}, this.getChartData)
+        this.setState(
+            {...this.state, siteCode, siteName, showCalendar: false},
+            this.getChartData)
     }
 
     handleCalendarButtonClick() {

@@ -58,7 +58,12 @@ class AirCalendars extends React.Component {
                     rows.push(
                         <React.Fragment key={i + 'key1'}>
                             <tr>{[0, 1].map(n => {
-                                return <td key={n}><HeatmapCalendar dateCounts={date_vals[n]} /></td>
+                                return <td key={n}>
+                                    <HeatmapCalendar
+                                        tooltipChoice={this.state.tooltipChoice}
+                                        dateCounts={date_vals[n]}
+                                    />
+                                    </td>
                             })}
                             </tr>
                         </React.Fragment>

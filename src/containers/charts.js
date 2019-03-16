@@ -35,6 +35,7 @@ class AirChart extends React.Component {
                 padding={{ top: 10, bottom: 30, left: 30, right: 0 }}
             >
                 <VictoryLabel
+                    className='chart_label'
                     text={`${this.props.siteName} - Past 24 hours`} x={37} y={30} textAnchor="middle"
                     style={{
                         textAnchor: "start",

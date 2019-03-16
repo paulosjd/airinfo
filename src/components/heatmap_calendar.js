@@ -11,8 +11,6 @@ const shiftDate = (date, numDays) => {
 };
 
 export default (props) => {
-    console.log(props.dateCounts)
-    const valueToString = (value) => {return {'data-tip': value.count}};
     setTimeout(ReactTooltip.rebuild);
     if ( !props.dateCounts ) {
         return (<p className='loading_text'>Loading...</p>)
@@ -30,7 +28,9 @@ export default (props) => {
                 }
                 return `color-scale-${value.count}`;
             }}
-            tooltipDataAttrs={(value) => {return {'data-tip': value.count}}}
+            tooltipDataAttrs={(value) => {return {
+                'data-tip': props.tooltipChoice ===  'count' ? value.count : value.max
+            }}}
             showWeekdayLabels={true}
         />
         <ReactTooltip place="top" type="light" effect="float"/>

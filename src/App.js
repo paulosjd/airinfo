@@ -22,12 +22,6 @@ class App extends Component {
         console.log('table fetch called')
         this.fetchData()
     }
-    //
-    // componentDidUpdate(prevProps, prevState){
-    //     if (prevState.siteCode !== this.state.siteCode) {
-    //         this.getChartData();
-    //     }
-    // }
 
     fetchData (coordinates){
         const api = 'http://api.air-aware.com/';

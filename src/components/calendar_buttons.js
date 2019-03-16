@@ -1,11 +1,11 @@
 import React from "react";
 import NumberSelect from './number_select'
+import TooltipSelect from './tooltip_select'
 
 export default (props) => {
     return (
     <>
     <div id='data_options' className="btn-group calendar-buttons">
-        
         {['PM10', 'PM25', 'Ozone'].map(val =>
             <button
                 key={val}
@@ -19,12 +19,18 @@ export default (props) => {
             onClick={props.handleClick}
             className={props.activeTab === 'no2' ? 'calendar-option-active' : 'calendar-option'}
         >NO<sub>2</sub></button>
-        <label htmlFor='num_select' className='heatmap_info'>Highest hourly measure..onclick show highest that day</label>
+        <label htmlFor='num_select' className='heatmap_info'>Highest hourly measurements</label>
         <NumberSelect
             id='num_select'
             number={props.number}
             handleNumberChoice={props.handleNumberChoice}
             numChoices={props.numChoices}
+        />
+        <label htmlFor='num_select' className='heatmap_info'>on hover</label>
+        <TooltipSelect
+            id='tooltip_select'
+            handleTooltipChoice={props.handleTooltipChoice}
+            tooltipChoice={props.tooltipChoice}
         />
     </div>
     </>

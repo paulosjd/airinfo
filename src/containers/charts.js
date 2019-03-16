@@ -4,19 +4,8 @@ import { VictoryLine, VictoryChart, VictoryAxis, VictoryLabel } from 'victory';
 class AirChart extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {chartData: []}
+        this.state = {chartData: this.props.chartData}
     };
-
-    componentDidMount(){
-        this.getChartData()
-    }
-
-    getChartData() {
-        const url = 'http://api.air-aware.com/data/'.concat(this.props.siteCode, '/168')
-        fetch(url)
-            .then(response => response.json())
-            .then(aqData => {this.setState({chartData: aqData})});
-    }
 
     componentDidUpdate(prevProps){
         if (prevProps.siteCode !== this.props.siteCode) {
@@ -25,6 +14,7 @@ class AirChart extends React.Component {
     }
 
     render() {
+        console.log(this.props.chartData)
         const dateFromDateTime = (datetime) => {
             let dtData = datetime.split(/[\s-:]/).map(x => parseInt(x));
             dtData[1]--;
@@ -32,11 +22,11 @@ class AirChart extends React.Component {
             date.setHours(...dtData);
             return date;
         };
-        let chartDataTime = this.state.chartData.map(hourlyData => ({
+        let chartDataTime = this.props.chartData.map(hourlyData => ({
             x: hourlyData.time.split(' ').splice(-1)[0],
             y: parseInt(hourlyData.pm10) || null
         }));
-        let chartDataDate = this.state.chartData.map(hourlyData => ({
+        let chartDataDate = this.props.chartData.map(hourlyData => ({
             x: dateFromDateTime(hourlyData.time),
             y: parseInt(hourlyData.pm10) || null
         }));

@@ -23,11 +23,15 @@ class MainContainer extends Component {
             siteCode: 'CLL2',
             siteName: 'London Bloomsbury',
             showCalendar: false,
-            numChoices: [100, 500, 1000]
+            numChoices: [100, 500, 1000],
+            calendarDataLoaded: false,
+            chartDataLoaded: false,
+            chartData: [],
         };
     }
 
     componentDidMount() {
+        this.getChartData()
         this.state.numChoices.forEach(num => this.getCalendarData(num))
     }
 
@@ -45,9 +49,24 @@ class MainContainer extends Component {
             fetch(url)
                 .then(response => response.json())
                 .then(aqData => {
-                    this.setState({[value + number]: aqData});
-                });
+                    this.setState({[value + number]: aqData},
+                        () => this.isCalendarDataLoaded(value, number));
+                })
         })
+    };
+
+    isCalendarDataLoaded(value, number) {
+        if (value === 'ozone' && number === 1000){
+            this.setState({calendarDataLoaded: true})
+        }
+    }
+
+    getChartData() {
+        const url = 'http://api.air-aware.com/data/'.concat(this.state.siteCode, '/168')
+        console.log(url)
+        fetch(url)
+            .then(response => response.json())
+            .then(aqData => {this.setState({...this.state, chartData: aqData, chartDataLoaded: true})});
     }
 
     handleSiteClick(siteCode, siteName) {
@@ -55,7 +74,9 @@ class MainContainer extends Component {
     }
 
     handleCalendarButtonClick() {
-        this.setState({showCalendar: !this.state.showCalendar})
+        if (this.state.calendarDataLoaded) {
+            this.setState({...this.state, showCalendar: !this.state.showCalendar})
+        }
     }
 
     handleFilterInput(val, field) {
@@ -91,6 +112,7 @@ class MainContainer extends Component {
     }
 
     render() {
+        console.log(this.state.chartData)
         const getDataObject = (str) => {
             let obj = {};
             this.state.numChoices.forEach(num => obj[str + num] = this.state[str + num]);
@@ -110,6 +132,7 @@ class MainContainer extends Component {
             />}
         else {
             detail = <AirChart
+                chartData={this.state.chartData}
                 siteCode={siteCode}
                 siteName={siteName.split(" ").splice(0,2).join(" ")}
             />

@@ -103,18 +103,46 @@ input[type=text], select {
   margin-bottom: 0px;
 }
 .tooltip_select{
+   border-radius: 7px 7px 7px 7px;
+   -moz-border-radius: 7px 7px 7px 7px;
+   -webkit-border-radius: 7px 7px 7px 7px;
+   float: right;
+   margin-left: 120px;
+   border: 0px solid #000000;
+   display: inline-block !important;
+   -webkit-appearance: none !important;
+   padding:1px 10px;
+   text-align: right;
+   color: peru;
+   margin-bottom: 0px;
+ }
+.timeframe_label {
+  font-family:Arial;
+  font-weight: normal;
+  display: inline-block;
+  text-align: right;
+  clear:left;
+  margin-bottom: 0;
+  padding:2px 4px;
+  color: lightslategrey;
+  margin-left: 72px;
+}
+.timeframe_select{
   border-radius: 7px 7px 7px 7px;
   -moz-border-radius: 7px 7px 7px 7px;
   -webkit-border-radius: 7px 7px 7px 7px;
-  float: right;
-  margin-left: 120px;
-  border: 0px solid #000000;
+  border: 0 solid #000000;
   display: inline-block !important;
   -webkit-appearance: none !important;
-  padding:1px 10px;
+  padding:1px 6px;
   text-align: right;
-  color: peru;
-  margin-bottom: 0px;
+  color: coral;
+  margin-bottom: 0;
+  margin-left: 2px;
+}
+.site_name {
+  display: inline-block;
+  margin-left: 72px;
 }
 .calendar-button, .calendar-option, .calendar-option-active {
   -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -204,3 +232,21 @@ rect[class^='color-scale-'] {
 .react-calendar-heatmap .color-scale-22 { fill: #4d1d0b; }
 .react-calendar-heatmap .color-scale-23 { fill: #3f1309; }
 .react-calendar-heatmap .color-scale-24 { fill: #390707; }
+
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}

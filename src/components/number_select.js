@@ -7,7 +7,8 @@ export default (props) => {
             style={{'width': width}}
             className='number_select'
             onChange={(e) => props.handleNumberChoice(e.target.value)}
-            value={props.number}>
+            value={props.number}
+        >
             {props.numChoices.map((num) => {
                 return <option key={num} value={num}>{num}</option>})}
         </select>

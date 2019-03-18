@@ -33,7 +33,7 @@ export default (props) => {
             }}}
             showWeekdayLabels={true}
         />
-        <ReactTooltip place="top" type="light" effect="float"/>
+        <ReactTooltip place="top" type="light" effect="float" />
         </>
     )
 }

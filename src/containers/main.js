@@ -26,6 +26,8 @@ class MainContainer extends Component {
             numChoices: [100, 500, 1000],
             calendarDataLoaded: false,
             chartData: [],
+            chartLoading: false,
+            timeframe: 'weekly'
         };
     }
 
@@ -60,21 +62,41 @@ class MainContainer extends Component {
     }
 
     getChartData() {
-        const url = 'http://api.air-aware.com/data/'.concat(this.state.siteCode, '/168')
+        let numHours;
+        switch (this.state.timeframe) {
+            case ('monthly'):
+                numHours = '/672';
+                break;
+            case ('bimonthly'):
+                numHours = '/1344';
+                break;
+            case ('trimonthly'):
+                numHours = '/2016';
+                break;
+            default:
+                numHours = '/168'
+        }
+        const url = 'http://api.air-aware.com/data/'.concat(this.state.siteCode, numHours);
         fetch(url)
             .then(response => response.json())
-            .then(aqData => {this.setState({...this.state, chartData: aqData})});
+            .then(aqData => {this.setState({
+                ...this.state, chartData: aqData, chartLoading: false})});
+    }
+
+    handleTimeframeChoice(timeframe) {
+        this.setState({...this.state, timeframe}, this.getChartData)
     }
 
     handleSiteClick(siteCode, siteName) {
         this.setState(
-            {...this.state, siteCode, siteName, showCalendar: false},
+            {...this.state, siteCode, siteName, showCalendar: false, chartLoading: true},
             this.getChartData)
     }
 
     handleCalendarButtonClick() {
         if (this.state.calendarDataLoaded) {
-            this.setState({...this.state, showCalendar: !this.state.showCalendar})
+            this.setState({
+                ...this.state, showCalendar: !this.state.showCalendar})
         }
     }
 
@@ -130,6 +152,9 @@ class MainContainer extends Component {
             />}
         else {
             detail = <AirChart
+                timeframe={this.state.timeframe}
+                handleTimeframeChoice={this.handleTimeframeChoice.bind(this)}
+                chartLoading={this.state.chartLoading}
                 chartData={this.state.chartData}
                 siteCode={siteCode}
                 siteName={siteName.split(" ").splice(0,2).join(" ")}

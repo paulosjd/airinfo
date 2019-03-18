@@ -19,7 +19,6 @@ class App extends Component {
     }
 
     componentDidMount() {
-        console.log('table fetch called')
         this.fetchData()
     }
 
@@ -35,7 +34,7 @@ class App extends Component {
             .then(data => {this.setState({
                 sites: data.site_data.filter(x => x),
                 time: data.time
-            }, () => console.log('state set'))});
+            })});
     }
 
     render() {

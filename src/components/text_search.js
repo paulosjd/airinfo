@@ -12,7 +12,7 @@ const TextSearchInput = (props) => {
 
     return <>
         <div><label htmlFor="text-search">Filter by site name </label></div>
-        <div><input name='text-search' type="text" placeholder="Enter name..."
+        <div><input name='text-search' type="text" placeholder="Enter text"
                     className='filter-element'
                     value={props.filterText}
                     onChange={handleFilterTextChange.bind(this)}

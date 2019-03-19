@@ -20,7 +20,9 @@ const SiteRow = (props) => {
                    data-sitecode={props.site.site_code}
                    data-sitename={props.site.name}
                 >
-                <span>{props.site.name.split(" ").splice(0,2).join(" ")}</span></a></td>
+                <span>{props.site.name.endsWith("Paul's") ? "Bristol St Paul's" :
+                    props.site.name.endsWith("Kensington") ?  'London Nth. Kens.' :
+                        props.site.name.split(" ").splice(0,2).join(" ")}</span></a></td>
             <td className='pm10_data'>{props.site.pm10}</td>
         </tr>
     );

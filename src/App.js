@@ -24,7 +24,7 @@ class App extends Component {
 
     fetchData (coordinates){
         const api = 'http://api.air-aware.com/';
-        const default_query = 'sites/latest-pm10/';
+        const default_query = 'sites/latest';
         let location_url = '';
         if ( coordinates ) {
             location_url = 'sites/location-order/'.concat(coordinates);

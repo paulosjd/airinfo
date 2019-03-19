@@ -22,6 +22,7 @@ class MainContainer extends Component {
             ...defaultFilters,
             siteCode: 'CLL2',
             siteName: 'London Bloomsbury',
+            tablePollutant: 'pm10',
             showCalendar: false,
             numChoices: [100, 500, 1000],
             calendarDataLoaded: false,
@@ -85,6 +86,10 @@ class MainContainer extends Component {
 
     handleTimeframeChoice(timeframe) {
         this.setState({...this.state, timeframe}, this.getChartData)
+    }
+
+    handleTablePollutantChoice(tablePollutant) {
+        this.setState({...this.state, tablePollutant})
     }
 
     handleSiteClick(siteCode, siteName) {
@@ -180,8 +185,10 @@ class MainContainer extends Component {
                 </Col>
                 <Col md={3}>
                 <SiteTable
-                    sites={this.props.sites.filter(site => site.pm10)}
+                    sites={this.props.sites.filter(site => site[this.state.tablePollutant])}
                     time={this.props.time}
+                    handlePollutantChoice={this.handleTablePollutantChoice.bind(this)}
+                    pollutant={this.state.tablePollutant}
                     filterText={this.state.filterText}
                     highFilter={this.state.highFilter}
                     siteRegion={this.state.siteRegion}

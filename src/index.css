@@ -69,6 +69,9 @@ code {
   margin-bottom: 0px;
   padding:2px 4px;
 }
+.form-radio, .time_label {
+  color: dimgrey;
+}
 label {
   font-family:Arial;
 }
@@ -87,6 +90,20 @@ input[type=text], select {
   background: rgba(255,255,255,0.5);
   margin: 0 0 14px 0;
   width: 177px;
+}
+.pollutant_select {
+  border-radius: 7px 7px 7px 7px;
+  -moz-border-radius: 7px 7px 7px 7px;
+  -webkit-border-radius: 7px 7px 7px 7px;
+  float: right;
+  border: 0px solid #000000;
+  display: inline-block !important;
+  -webkit-appearance: none !important;
+  padding:1px 10px;
+  text-align: right;
+  color: peru;
+  margin-bottom: 0px;
+  width: 70px;
 }
 .number_select {
   border-radius: 7px 7px 7px 7px;
@@ -232,21 +249,3 @@ rect[class^='color-scale-'] {
 .react-calendar-heatmap .color-scale-22 { fill: #4d1d0b; }
 .react-calendar-heatmap .color-scale-23 { fill: #3f1309; }
 .react-calendar-heatmap .color-scale-24 { fill: #390707; }
-
-.example-enter {
-  opacity: 0.01;
-}
-
-.example-enter.example-enter-active {
-  opacity: 1;
-  transition: opacity 500ms ease-in;
-}
-
-.example-leave {
-  opacity: 1;
-}
-
-.example-leave.example-leave-active {
-  opacity: 0.01;
-  transition: opacity 300ms ease-in;
-}

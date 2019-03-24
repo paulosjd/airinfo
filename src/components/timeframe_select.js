@@ -1,7 +1,7 @@
 import React from "react";
 
 export default (props) => {
-    const width = props.timeframe === 'weekly' ? 62 : props.timeframe === 'trimonthly' ? 78 : 71;
+    const width = props.timeframe === 'weekly' ? 64 : props.timeframe === 'trimonthly' ? 80 : 73;
     return (
         <select
             style={{'width': width}}

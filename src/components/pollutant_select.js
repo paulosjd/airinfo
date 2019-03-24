@@ -1,7 +1,7 @@
 import React from "react";
 
 export default (props) => {
-    const width = props.pollutant === 'ozone' ? 62 : 50;
+    const width = props.pollutant === 'no2' ? 60 : 70;
     return (
         <select
             style={{'width': width}}

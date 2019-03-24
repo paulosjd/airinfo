@@ -5,7 +5,6 @@ const SiteCatRow = (props) => {
 };
 
 const SiteRow = (props) => {
-
     const handleClick = (e) => {
         e.preventDefault();
         const siteCode = e.currentTarget.dataset.sitecode;
@@ -23,7 +22,7 @@ const SiteRow = (props) => {
                 <span>{props.site.name.endsWith("Paul's") ? "Bristol St Paul's" :
                     props.site.name.endsWith("Kensington") ?  'London Nth. Kens.' :
                         props.site.name.split(" ").splice(0,2).join(" ")}</span></a></td>
-            <td className='pm10_data'>{props.site.pm10}</td>
+            <td className='pm10_data'>{props.site[props.pollutant]}</td>
         </tr>
     );
 };

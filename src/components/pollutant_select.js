@@ -12,7 +12,7 @@ export default (props) => {
             <option value='pm10' title="Particulate matter 10">PM10</option>
             <option value='pm25' title="Particulate matter 25">PM25</option>
             <option value='no2' title="Nitrogen dioxide">NO₂</option>
-            <option value='ozone' title="Ozone">Ozone</option>
+            <option value='ozone' title="Ozone">ozone</option>
         </select>
     )
 }

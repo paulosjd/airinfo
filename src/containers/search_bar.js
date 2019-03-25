@@ -43,10 +43,13 @@ class SearchBar extends React.Component {
     };
 
     render() {
+        const filterLabelText = this.props.pollutant === 'ozone' ? 'ozone' :
+            this.props.pollutant.toUpperCase();
         return (<>
             <button onClick={this.props.onCalendarButtonClick.bind(this)} className='calendar-button'>
                 {!this.props.showCalendar ? 'Show calendar heatmap' : 'Show recent charts'}</button>
             <RadioContainer
+                pollutant={filterLabelText + ' levels'}
                 radios={pm10_levels}
                 selectedOption={this.props.highFilter}
                 filterCriteria={'high_filter'}

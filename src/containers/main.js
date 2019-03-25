@@ -171,6 +171,7 @@ class MainContainer extends Component {
                 <Row>
                 <Col md={2}>
                 <SearchBar
+                    pollutant={this.state.tablePollutant}
                     filterText={this.state.filterText}
                     highFilter={this.state.highFilter}
                     siteCategory={this.state.siteCategory}

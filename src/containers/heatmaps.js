@@ -16,7 +16,7 @@ class AirCalendars extends React.Component {
     };
 
     handleButtonClick(e) {
-        this.setState({...this.state, pollutant: e.target.value});
+        this.setState({...this.state, pollutant: e.target.value})
     }
 
     handleNumberChoice(number) {

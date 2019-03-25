@@ -1,7 +1,11 @@
 import React from "react";
 
 const SiteCatRow = (props) => {
-    return <tr><th colSpan="2">{props.category}</th></tr>;
+    if (props.isFirst) {
+        return <tr><th colSpan="2">{props.category}
+            <span style={{float: 'right', color: 'dimgrey', marginRight: 16, fontWeight: 'normal'}}>
+                μg/m3</span></th></tr>;
+    } return <tr><th colSpan="2">{props.category}</th></tr>;
 };
 
 const SiteRow = (props) => {

@@ -100,9 +100,10 @@ input[type=text], select {
   -webkit-appearance: none !important;
   padding:1px 10px;
   text-align: right;
-  color: peru;
+  color: goldenrod;
   margin-bottom: 0;
   width: 90px;
+  cursor: pointer;
 }
 .number_select {
   border-radius: 7px 7px 7px 7px;
@@ -117,6 +118,7 @@ input[type=text], select {
   text-align: right;
   color: peru;
   margin-bottom: 0;
+  cursor: pointer;
 }
 .tooltip_select{
    border-radius: 7px 7px 7px 7px;
@@ -131,6 +133,7 @@ input[type=text], select {
    text-align: right;
    color: peru;
    margin-bottom: 0;
+  cursor: pointer;
  }
 .timeframe_label {
   font-family:Arial;
@@ -152,9 +155,10 @@ input[type=text], select {
   -webkit-appearance: none !important;
   padding:1px 6px;
   text-align: right;
-  color: cadetblue;
+  color: steelblue;
   margin-bottom: 0;
   margin-left: 2px;
+  cursor: pointer;
 }
 .site_name {
   display: inline-block;

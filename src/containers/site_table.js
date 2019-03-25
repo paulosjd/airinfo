@@ -33,11 +33,14 @@ const SiteTable = (props) => {
             categorizedSites.get(site.category).push(site)
         });
         const rows = [];
+        let first = true;
         for (let cat of categories) {
             rows.push(<SiteCatRow
                 category={cat}
+                isFirst={first}
                 key={generateKey(cat)}
             />);
+            first = false;
             let sites = categorizedSites.get(cat);
             for (let site of sites) {
                 rows.push(<SiteRow
@@ -62,7 +65,6 @@ const SiteTable = (props) => {
                     pollutant={props.pollutant}
                     handlePollutantChoice={props.handlePollutantChoice}
                 />
-                {/*(μg/m3)*/}
             </th></tr>
             </thead>
             <tbody>

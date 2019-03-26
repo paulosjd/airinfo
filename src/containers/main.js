@@ -21,7 +21,7 @@ class MainContainer extends Component {
         this.state = {
             ...defaultFilters,
             siteCode: 'CLL2',
-            siteName: 'London Bloomsbury',
+            siteName: 'London Marylebone',
             tablePollutant: 'pm10',
             showCalendar: false,
             numChoices: [100, 500, 1000],
@@ -88,7 +88,8 @@ class MainContainer extends Component {
         this.setState({...this.state, timeframe}, this.getChartData)
     }
 
-    handleTablePollutantChoice(tablePollutant) {
+    handleTablePollutantChoice(eventOrValue) {
+        let tablePollutant = typeof eventOrValue === 'string' ? eventOrValue : eventOrValue.target.value;
         this.setState({...this.state, tablePollutant})
     }
 
@@ -157,6 +158,8 @@ class MainContainer extends Component {
             />}
         else {
             detail = <AirChart
+                pollutant={this.state.tablePollutant}
+                handlePollutantClick={this.handleTablePollutantChoice.bind(this)}
                 timeframe={this.state.timeframe}
                 handleTimeframeChoice={this.handleTimeframeChoice.bind(this)}
                 chartLoading={this.state.chartLoading}

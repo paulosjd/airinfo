@@ -28,11 +28,11 @@ const AirChart = (props) => {
     };
     const chartDataTime = props.chartData.map(hourlyData => ({
         x: hourlyData.time.split(' ').splice(-1)[0],
-        y: parseInt(hourlyData.pm10) || null
+        y: parseInt(hourlyData[props.pollutant]) || null
     }));
     const chartDataDate = props.chartData.map(hourlyData => ({
         x: dateFromDateTime(hourlyData.time),
-        y: parseInt(hourlyData.pm10) || null
+        y: parseInt(hourlyData[props.pollutant]) || null
     }));
     const maxVal = Math.max(...chartDataTime.map(a => a.y));
     const minVal = Math.min(...chartDataTime.map(a => a.y));
@@ -55,6 +55,8 @@ const AirChart = (props) => {
         return (
         <>
         <ChartsHeader
+            activeTab={props.pollutant}
+            handleClick={props.handlePollutantClick}
             siteName={props.siteName}
             timeframe={props.timeframe}
             handleTimeframeChoice={props.handleTimeframeChoice}

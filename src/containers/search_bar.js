@@ -47,7 +47,7 @@ class SearchBar extends React.Component {
             this.props.pollutant.toUpperCase();
         return (<>
             <button onClick={this.props.onCalendarButtonClick.bind(this)} className='calendar-button'>
-                {!this.props.showCalendar ? 'Show calendar heatmap' : 'Show recent charts'}</button>
+                {!this.props.showCalendar ? 'Calendar heatmaps' : 'Recent charts'}</button>
             <RadioContainer
                 pollutant={filterLabelText + ' levels'}
                 radios={pm10_levels}

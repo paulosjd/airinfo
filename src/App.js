@@ -29,7 +29,8 @@ class App extends Component {
         if ( coordinates ) {
             location_url = 'sites/location-order/'.concat(coordinates);
     }
-        fetch(api + (location_url || default_query))
+        fetch(api + (location_url || default_query), {
+            mode: 'no-cors'})
             .then(response => response.json())
             .then(data => {this.setState({
                 sites: data.site_data.filter(x => x),

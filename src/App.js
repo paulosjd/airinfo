@@ -23,7 +23,7 @@ class App extends Component {
     }
 
     fetchData (coordinates){
-        const api = 'http://api.air-aware.com/';
+        const api = 'https://api.air-aware.com/';
         const default_query = 'sites/latest';
         let location_url = '';
         if ( coordinates ) {

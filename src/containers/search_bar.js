@@ -19,7 +19,7 @@ class SearchBar extends React.Component {
         const textInput = townInput.replace(/\W/g, '');
         if ( textInput.length > 2 ) {
             this.setState({isLoading: true})
-            const geoUrl = 'http://api.air-aware.com/sites/town-geo';
+            const geoUrl = 'https://api.air-aware.com/sites/town-geo';
             fetch(geoUrl)
                 .then(response => response.json())
                 .then(data => {

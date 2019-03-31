@@ -38,7 +38,7 @@ class MainContainer extends Component {
     }
 
     getCalendarData(number) {
-        const getUrl = (pol) => 'http://api.air-aware.com/stats/highest-sites/'.concat(pol, '/', number);
+        const getUrl = (pol) => 'https://api.air-aware.com/stats/highest-sites/'.concat(pol, '/', number);
         let url = getUrl('no2');
         fetch(url)
             .then(response => response.json())
@@ -77,7 +77,7 @@ class MainContainer extends Component {
             default:
                 numHours = '/168'
         }
-        const url = 'http://api.air-aware.com/data/'.concat(this.state.siteCode, numHours);
+        const url = 'https://api.air-aware.com/data/'.concat(this.state.siteCode, numHours);
         fetch(url)
             .then(response => response.json())
             .then(aqData => {this.setState({

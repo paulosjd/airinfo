@@ -38,16 +38,16 @@ class MainContainer extends Component {
     }
 
     getCalendarData(number) {
-        const getUrl = (pol) => 'https://api.air-aware.com/stats/highest-sites/'.concat(pol, '/', number);
+        const getUrl = (pol) => 'http://api.air-aware.com/stats/highest-sites/'.concat(pol, '/', number);
         let url = getUrl('no2');
-        fetch(url, {mode: 'no-cors'})
+        fetch(url)
             .then(response => response.json())
             .then(aqData => {
                 this.setState({['no2' + number]: aqData});
             });
         pollutants.filter(val => val !== 'no2').forEach(value => {
             url = getUrl(value);
-            fetch(url, {mode: 'no-cors'})
+            fetch(url)
                 .then(response => response.json())
                 .then(aqData => {
                     this.setState({[value + number]: aqData},
@@ -77,8 +77,8 @@ class MainContainer extends Component {
             default:
                 numHours = '/168'
         }
-        const url = 'https://api.air-aware.com/data/'.concat(this.state.siteCode, numHours);
-        fetch(url, {mode: 'no-cors'})
+        const url = 'http://api.air-aware.com/data/'.concat(this.state.siteCode, numHours);
+        fetch(url)
             .then(response => response.json())
             .then(aqData => {this.setState({
                 ...this.state, chartData: aqData, chartLoading: false})});

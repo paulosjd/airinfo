@@ -23,14 +23,13 @@ class App extends Component {
     }
 
     fetchData (coordinates){
-        const api = 'https://api.air-aware.com/';
+        const api = 'http://api.air-aware.com/';
         const default_query = 'sites/latest';
         let location_url = '';
         if ( coordinates ) {
             location_url = 'sites/location-order/'.concat(coordinates);
     }
-        fetch(api + (location_url || default_query), {
-            mode: 'no-cors'})
+        fetch(api + (location_url || default_query))
             .then(response => response.json())
             .then(data => {this.setState({
                 sites: data.site_data.filter(x => x),

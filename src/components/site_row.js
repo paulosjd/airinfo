@@ -17,15 +17,23 @@ const SiteRow = (props) => {
         window.scrollTo(0, 0);
     };
 
+    const siteNameDisplay = (siteName) => {
+        if (siteName.startsWith("Bristol")){
+            return siteName;
+        } else if (siteName.endsWith("Kensington")){
+            return 'London Nth. Kens.';
+        } else if (siteName.startsWith("Stanford") || siteName.startsWith("Stockton")) {
+            return siteName.split(" ").splice(0, 1)[0];
+        } else return siteName.split(" ").splice(0,2).join(" ")
+    };
+
     return (
         <tr>
             <td><a href={'/' + props.site.site_code} className="link" onClick={handleClick}
                    data-sitecode={props.site.site_code}
                    data-sitename={props.site.name}
                 >
-                <span>{props.site.name.endsWith("Paul's") ? "Bristol St Paul's" :
-                    props.site.name.endsWith("Kensington") ?  'London Nth. Kens.' :
-                        props.site.name.split(" ").splice(0,2).join(" ")}</span></a></td>
+                <span>{siteNameDisplay(props.site.name)}</span></a></td>
             <td className='pm10_data'>{props.site[props.pollutant]}</td>
         </tr>
     );
